@@ -79,45 +79,46 @@ export function Dataset() {
                 <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">Statistic</Badge>
                 <PremiumBadge>Premium Dataset</PremiumBadge>
                 <PremiumBadge>Institutional Grade</PremiumBadge>
-                <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 font-mono">
+                <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 font-mono text-[10px] sm:text-xs">
                   <ShieldCheck className="h-3 w-3 mr-1" /> Verified Source (Score 99/100)
                 </Badge>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold font-heading text-text-main leading-tight mb-4">
+              <h1 className="text-2xl sm:text-4xl font-bold font-heading text-text-main leading-tight mb-3 sm:mb-4">
                 {datasetTitle}
               </h1>
-              <p className="text-lg text-text-muted leading-relaxed">
+              <p className="text-sm sm:text-lg text-text-muted leading-relaxed">
                 Market size of artificial intelligence (AI) globally from 2020 to 2024, with a forecast for 2025, broken down by major geographic regions (in billion U.S. dollars).
               </p>
             </div>
             
-            <div className="flex flex-col gap-2 shrink-0">
+            <div className="flex flex-col gap-2 shrink-0 w-full sm:w-auto">
               <ExportDropdown
                 title={datasetTitle}
                 source="Global Intelligence Insights & SEC Filings"
                 lastUpdated="2026-07-22"
                 columns={TABLE_COLUMNS}
                 rows={TABLE_ROWS}
+                className="w-full"
               />
               <div className="flex gap-2 w-full">
                 <Button
                   variant="outline"
                   onClick={handleBookmarkToggle}
-                  className={`flex-1 bg-surface shadow-sm ${isBookmarked ? 'text-amber-500 border-amber-500' : ''}`}
+                  className={`flex-1 bg-surface shadow-sm h-10 ${isBookmarked ? 'text-amber-500 border-amber-500' : ''}`}
                 >
                   <Bookmark className={`h-4 w-4 ${isBookmarked ? 'fill-amber-500' : ''}`} />
                 </Button>
                 <Button
                   variant="outline"
                   onClick={() => setIsShareOpen(true)}
-                  className="flex-1 bg-surface shadow-sm"
+                  className="flex-1 bg-surface shadow-sm h-10"
                 >
                   <Share2 className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="outline"
                   onClick={() => setIsAiModalOpen(true)}
-                  className="flex-1 bg-surface shadow-sm text-primary"
+                  className="flex-1 bg-surface shadow-sm text-primary h-10"
                 >
                   <Sparkles className="h-4 w-4" />
                 </Button>

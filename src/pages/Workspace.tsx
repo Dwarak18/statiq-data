@@ -87,50 +87,50 @@ export function Workspace() {
 
   return (
     <Layout>
-      <div className="border-b border-border bg-surface px-4 py-8 sm:px-6 lg:px-8">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="border-b border-border bg-surface px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold font-heading text-text-main mb-2">My Workspaces</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold font-heading text-text-main mb-1.5">My Workspaces</h1>
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-text-muted">Organize your saved datasets, AI insights, and custom dashboards.</p>
+              <p className="text-xs sm:text-sm text-text-muted">Organize your saved datasets, AI insights, and custom dashboards.</p>
               <PremiumBadge>Workspace Preview</PremiumBadge>
             </div>
           </div>
           <Button
             onClick={() => setIsCreateModalOpen(true)}
-            className="bg-primary hover:bg-primary/90 text-white font-medium shadow"
+            className="bg-primary hover:bg-primary/90 text-white font-medium shadow w-full sm:w-auto justify-center h-10"
           >
             <Plus className="w-4 h-4 mr-2" /> New Workspace
           </Button>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
           
-          {/* Sidebar */}
-          <div className="space-y-6">
+          {/* Sidebar (Responsive Folder Pill Strip on Mobile, Vertical List on Desktop) */}
+          <div className="space-y-4 md:space-y-6">
             <div>
-              <h3 className="font-heading font-semibold text-sm uppercase tracking-wider text-text-muted mb-3">Folders</h3>
-              <div className="space-y-1">
+              <h3 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-wider text-text-muted mb-2 sm:mb-3">Folders</h3>
+              <div className="flex md:flex-col overflow-x-auto scrollbar-hide gap-1.5 pb-2 md:pb-0">
                 {['All Projects', 'Q3 Market Analysis', 'Healthcare Trends', 'Competitor Benchmarks'].map((folder) => (
                   <Button
                     key={folder}
                     variant="ghost"
                     onClick={() => { setActiveFolder(folder); showToast(`Filter: ${folder}`, 'info'); }}
-                    className={`w-full justify-start text-sm ${
+                    className={`whitespace-nowrap md:w-full justify-start text-xs sm:text-sm shrink-0 px-3 py-2 ${
                       activeFolder === folder
-                        ? 'text-primary bg-primary/10 font-bold'
-                        : 'text-text-muted hover:text-text-main'
+                        ? 'text-primary bg-primary/10 font-bold border border-primary/20 md:border-none'
+                        : 'text-text-muted hover:text-text-main border border-border md:border-none'
                     }`}
                   >
-                    <Folder className="mr-2 h-4 w-4" /> {folder}
+                    <Folder className="mr-2 h-4 w-4 shrink-0" /> {folder}
                   </Button>
                 ))}
               </div>
             </div>
 
-            <div className="pt-6 border-t border-border">
+            <div className="pt-4 md:pt-6 border-t border-border hidden md:block">
               <h3 className="font-heading font-semibold text-sm uppercase tracking-wider text-text-muted mb-3">Shared With Me</h3>
               <div className="space-y-1">
                 <Button

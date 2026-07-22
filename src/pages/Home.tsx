@@ -68,7 +68,7 @@ export function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-primary px-4 py-24 sm:px-6 lg:px-8 text-center text-white">
+      <section className="relative overflow-hidden bg-primary px-4 py-16 sm:py-24 lg:px-8 text-center text-white">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -76,11 +76,11 @@ export function Home() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="container relative z-10 mx-auto max-w-4xl"
         >
-          <Badge className="mb-6 bg-white/10 text-white hover:bg-white/20 border-white/20">Premium Financial Research</Badge>
-          <h1 className="mb-6 font-heading text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-            Find the <span className="text-accent">data</span> you need,<br />faster than ever.
+          <Badge className="mb-4 sm:mb-6 bg-white/10 text-white hover:bg-white/20 border-white/20 text-xs sm:text-sm">Premium Financial Research</Badge>
+          <h1 className="mb-4 sm:mb-6 font-heading text-3xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl leading-tight">
+            Find the <span className="text-accent">data</span> you need,<br className="hidden sm:inline" /> faster than ever.
           </h1>
-          <p className="mb-10 text-lg text-white/80 sm:text-xl max-w-2xl mx-auto font-light">
+          <p className="mb-8 sm:mb-10 text-base sm:text-xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
             Access over 3.5 million statistics covering finance, economy & markets across 150+ countries. Real-time data for real-world decisions.
           </p>
           
@@ -89,17 +89,19 @@ export function Home() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="mx-auto flex max-w-2xl items-center rounded-lg bg-white p-1 shadow-lg shadow-black/10"
+              className="mx-auto flex flex-col sm:flex-row max-w-2xl items-stretch sm:items-center rounded-xl bg-white p-2 sm:p-1.5 shadow-xl shadow-black/10 gap-2 sm:gap-0"
             >
-              <Search className="ml-3 h-5 w-5 text-text-muted shrink-0" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search statistics, industries, or companies..."
-                className="w-full bg-transparent px-4 py-3 text-text-main outline-none placeholder:text-text-muted"
-              />
-              <Button type="submit" size="lg" className="rounded-md bg-secondary hover:bg-secondary/90 px-8 text-white font-medium shrink-0">
+              <div className="flex items-center flex-1 px-2 py-1">
+                <Search className="h-5 w-5 text-text-muted shrink-0 ml-1" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search statistics, industries, or companies..."
+                  className="w-full bg-transparent px-3 py-2 text-text-main outline-none placeholder:text-text-muted text-base sm:text-sm font-medium"
+                />
+              </div>
+              <Button type="submit" size="lg" className="rounded-lg bg-secondary hover:bg-secondary/90 px-8 py-3 text-white font-semibold w-full sm:w-auto shrink-0 shadow-md">
                 Search
               </Button>
             </motion.div>
@@ -109,14 +111,14 @@ export function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-2 text-sm text-white/60"
+            className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-white/60"
           >
-            <span>Trending:</span>
+            <span className="w-full sm:w-auto mb-1 sm:mb-0">Trending:</span>
             {['Inflation Rate', 'EV Sales', 'SaaS Growth', 'GDP Forecast'].map((tag) => (
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className="rounded-full border border-white/20 bg-white/5 px-3 py-1 hover:bg-white/20 transition-colors text-white text-xs font-medium cursor-pointer"
+                className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 hover:bg-white/20 transition-colors text-white text-xs font-medium cursor-pointer active:scale-95"
               >
                 {tag}
               </button>
@@ -128,7 +130,7 @@ export function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-8 sm:grid-cols-4"
+            className="mt-12 sm:mt-16 grid grid-cols-2 gap-4 sm:gap-8 border-t border-white/10 pt-8 sm:grid-cols-4"
           >
             {[
               { label: 'Statistics', value: '3.5M+' },
@@ -136,9 +138,9 @@ export function Home() {
               { label: 'Countries', value: '150+' },
               { label: 'Reports', value: '45K+' },
             ].map((stat) => (
-              <motion.div variants={itemVariants} key={stat.label} className="text-center">
-                <div className="font-mono text-3xl font-bold text-white">{stat.value}</div>
-                <div className="mt-1 text-sm text-white/60 uppercase tracking-wider">{stat.label}</div>
+              <motion.div variants={itemVariants} key={stat.label} className="text-center p-2 rounded-lg bg-white/5 sm:bg-transparent">
+                <div className="font-mono text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
+                <div className="mt-1 text-[11px] sm:text-sm text-white/60 uppercase tracking-wider">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -382,7 +384,7 @@ export function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-primary px-4 py-20 sm:px-6 lg:px-8 text-center text-white relative overflow-hidden">
+      <section className="bg-primary px-4 py-16 sm:py-20 sm:px-6 lg:px-8 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -390,19 +392,19 @@ export function Home() {
           viewport={{ once: true }}
           className="container relative z-10 mx-auto max-w-2xl"
         >
-          <h2 className="font-heading text-3xl font-bold mb-4">Stay ahead of the market</h2>
-          <p className="text-white/80 mb-8">
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-3">Stay ahead of the market</h2>
+          <p className="text-white/80 text-sm sm:text-base mb-6 max-w-lg mx-auto">
             Get our weekly newsletter with the most important data trends, market shifts, and new statistical releases.
           </p>
-          <form onSubmit={handleSubscribe} className="flex w-full max-w-md mx-auto items-center space-x-2">
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row w-full max-w-md mx-auto items-stretch sm:items-center gap-2.5 sm:space-x-2">
             <input 
               type="email" 
               value={newsletterEmail}
               onChange={(e) => setNewsletterEmail(e.target.value)}
-              placeholder="Enter your email" 
-              className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all hover:bg-white/20"
+              placeholder="Enter your work email" 
+              className="flex h-11 w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-base sm:text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all hover:bg-white/20"
             />
-            <Button type="submit" className="bg-accent hover:bg-accent/90 text-white font-semibold shrink-0">Subscribe</Button>
+            <Button type="submit" className="h-11 bg-accent hover:bg-accent/90 text-white font-semibold shrink-0 w-full sm:w-auto shadow-md">Subscribe</Button>
           </form>
         </motion.div>
       </section>

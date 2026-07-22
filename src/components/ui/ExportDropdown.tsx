@@ -45,15 +45,17 @@ export function ExportDropdown({
     <div className={`relative inline-block text-left ${className}`} ref={dropdownRef}>
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-primary hover:bg-primary/90 text-white font-medium shadow-sm flex items-center gap-2"
+        className="bg-primary hover:bg-primary/90 text-white font-medium shadow-sm flex items-center justify-between sm:justify-start gap-2 w-full sm:w-auto h-10"
       >
-        <Download className="h-4 w-4" />
-        <span>Download Dataset</span>
+        <div className="flex items-center gap-2">
+          <Download className="h-4 w-4" />
+          <span>Download Dataset</span>
+        </div>
         <ChevronDown className="h-3.5 w-3.5 opacity-80" />
       </Button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 rounded-xl bg-surface border border-border shadow-xl z-50 py-2 text-xs font-medium backdrop-blur-md">
+        <div className="absolute right-0 sm:right-0 left-0 sm:left-auto mt-2 w-full sm:w-64 max-h-[75vh] overflow-y-auto rounded-xl bg-surface border border-border shadow-xl z-50 py-2 text-xs font-medium backdrop-blur-md animate-in fade-in-50 zoom-in-95 duration-150">
           <div className="px-3 py-1.5 text-[10px] uppercase font-mono text-text-muted border-b border-border mb-1">
             STATIQDATA Export Formats
           </div>

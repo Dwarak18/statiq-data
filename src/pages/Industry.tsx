@@ -111,15 +111,15 @@ export function Industry() {
     <Layout>
       {/* Directory Header */}
       <div className="bg-surface border-b border-border">
-        <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 text-center">
-          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Industry Research</Badge>
-          <div className="mb-4 flex justify-center">
+        <div className="container mx-auto px-4 py-8 sm:py-12 sm:px-6 lg:px-8 text-center">
+          <Badge className="mb-3 bg-primary/10 text-primary border-primary/20 text-xs">Industry Research</Badge>
+          <div className="mb-3 flex justify-center">
             <PremiumBadge>Institutional Industry Intelligence</PremiumBadge>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-heading text-text-main mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-text-main mb-3">
             Global Industry Insights
           </h1>
-          <p className="text-lg text-text-muted max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
             Discover comprehensive statistics, forecasts, and market research reports across 180+ global industries.
           </p>
         </div>

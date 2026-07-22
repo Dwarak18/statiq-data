@@ -105,38 +105,38 @@ export function Dashboard() {
       <div className="bg-surface border-b border-border">
         <div className="container mx-auto px-4 py-6 sm:px-6">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-white shadow-sm">
-                <BarChart2 className="h-8 w-8" />
+            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+              <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-xl bg-primary text-white shadow-sm shrink-0">
+                <BarChart2 className="h-7 w-7 sm:h-8 sm:w-8" />
               </div>
               <div>
-                <div className="flex items-center gap-3">
-                  <h1 className="font-heading text-2xl font-bold text-text-main">Global Technology Macro Trends</h1>
-                  <Badge variant="outline" className="font-mono">Dashboard</Badge>
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                  <h1 className="font-heading text-xl sm:text-2xl font-bold text-text-main">Global Technology Macro Trends</h1>
+                  <Badge variant="outline" className="font-mono text-xs">Dashboard</Badge>
                   <PremiumBadge>Enterprise Ready</PremiumBadge>
                 </div>
-                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-text-muted">
-                  <span className="flex items-center gap-1">Compiled by STATIQDATA Research Team</span>
-                  <span>|</span>
-                  <span className="flex items-center gap-1 font-mono">14 Datasets</span>
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-text-muted font-mono">
+                  <span>Compiled by STATIQDATA Research</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span>14 Datasets</span>
                 </div>
               </div>
             </div>
             
-            <div className="flex flex-col items-end gap-2">
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" onClick={handleSaveToggle} className="h-8">
+            <div className="flex flex-col sm:items-end gap-2 w-full md:w-auto">
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <Button variant="outline" size="sm" onClick={handleSaveToggle} className="h-9 flex-1 sm:flex-none">
                   <Star className={`mr-2 h-4 w-4 ${isSaved ? 'text-amber-500 fill-amber-500' : 'text-text-muted'}`} />
                   {isSaved ? 'Saved' : 'Save'}
                 </Button>
-                <Button variant="outline" size="sm" onClick={() => setIsShareOpen(true)} className="h-8">
+                <Button variant="outline" size="sm" onClick={() => setIsShareOpen(true)} className="h-9 flex-1 sm:flex-none">
                   <Share2 className="mr-2 h-4 w-4 text-text-muted" /> Share
                 </Button>
-                <Button size="sm" onClick={handleDownloadPdf} className="h-8 bg-primary hover:bg-primary/90 text-white">
+                <Button size="sm" onClick={handleDownloadPdf} className="h-9 flex-1 sm:flex-none bg-primary hover:bg-primary/90 text-white">
                   <Lock className="mr-2 h-4 w-4" /> Export PDF
                 </Button>
               </div>
-              <div className="font-mono text-xs text-text-muted mt-2">
+              <div className="font-mono text-xs text-text-muted mt-1 text-left sm:text-right">
                 Last updated: {new Date().toISOString().split('T')[0]}
               </div>
             </div>
@@ -146,7 +146,7 @@ export function Dashboard() {
 
       <div className="container mx-auto px-4 py-6 sm:px-6 bg-background">
         {/* KPI Grid */}
-        <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4">
+        <div className="mb-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {[
             { label: 'Global IT Spending 2025', value: '$5.2T', change: '+8.0%', up: true },
             { label: 'AI Market Size 2025', value: '$420B', change: '+37.3%', up: true },
@@ -155,12 +155,12 @@ export function Dashboard() {
           ].map((kpi, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
               <Card className="shadow-none rounded-lg hover:border-primary/50 transition-colors cursor-default h-full">
-                <CardContent className="p-4">
-                  <div className="text-[11px] font-semibold text-text-muted uppercase tracking-wider mb-2 line-clamp-1">{kpi.label}</div>
-                  <div className="font-mono text-2xl font-bold text-text-main">{kpi.value}</div>
-                  <div className={`mt-2 flex items-center text-xs font-medium font-mono ${kpi.up ? 'text-success' : 'text-danger'}`}>
-                    {kpi.up ? <ArrowUpRight className="mr-0.5 h-4 w-4" /> : <ArrowDownRight className="mr-0.5 h-4 w-4" />}
-                    {kpi.change} YoY Forecast
+                <CardContent className="p-3 sm:p-4">
+                  <div className="text-[10px] sm:text-[11px] font-semibold text-text-muted uppercase tracking-wider mb-1.5 line-clamp-1">{kpi.label}</div>
+                  <div className="font-mono text-xl sm:text-2xl font-bold text-text-main">{kpi.value}</div>
+                  <div className={`mt-1.5 flex items-center text-xs font-medium font-mono ${kpi.up ? 'text-success' : 'text-danger'}`}>
+                    {kpi.up ? <ArrowUpRight className="mr-0.5 h-3.5 w-3.5" /> : <ArrowDownRight className="mr-0.5 h-3.5 w-3.5" />}
+                    {kpi.change} YoY
                   </div>
                 </CardContent>
               </Card>

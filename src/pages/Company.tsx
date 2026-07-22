@@ -76,25 +76,22 @@ export function Company() {
     <Layout>
       {/* Company Header */}
       <div className="bg-surface border-b border-border">
-        <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-start justify-between gap-6">
-            <div className="flex items-start gap-6">
-              <div className="h-24 w-24 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
-                <span className="text-2xl font-bold font-mono text-primary">{currentCompany.ticker}</span>
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 w-full md:w-auto">
+              <div className="h-16 w-16 sm:h-24 sm:w-24 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
+                <span className="text-xl sm:text-2xl font-bold font-mono text-primary">{currentCompany.ticker}</span>
               </div>
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2 flex-wrap">
-                  <h1 className="text-3xl font-bold font-heading text-text-main">{currentCompany.name}</h1>
-                  <Badge variant="outline" className="font-mono">{currentCompany.exchange}: {currentCompany.ticker}</Badge>
+                <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap">
+                  <h1 className="text-2xl sm:text-3xl font-bold font-heading text-text-main">{currentCompany.name}</h1>
+                  <Badge variant="outline" className="font-mono text-xs">{currentCompany.exchange}: {currentCompany.ticker}</Badge>
                   <PremiumBadge>Premium Analysis</PremiumBadge>
-                  <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 font-mono">
-                    <ShieldCheck className="h-3 w-3 mr-1" /> Verified Official SEC Filing
-                  </Badge>
                 </div>
-                <p className="text-text-muted max-w-3xl mb-4 leading-relaxed text-sm">
+                <p className="text-text-muted max-w-3xl mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm">
                   {currentCompany.description}
                 </p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-text-muted font-mono">
+                <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1.5 text-xs text-text-muted font-mono">
                   <span className="flex items-center gap-1.5"><Globe className="h-3.5 w-3.5" /> {currentCompany.headquarters}</span>
                   <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> {currentCompany.employees.toLocaleString()} Employees</span>
                   <span className="flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5" /> Founded: {currentCompany.founded}</span>
@@ -103,15 +100,16 @@ export function Company() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 shrink-0">
+            <div className="flex flex-col gap-2 shrink-0 w-full md:w-auto">
               <ExportDropdown
                 title={`${currentCompany.name} Financial Statements`}
                 source={currentCompany.source.name}
                 lastUpdated={currentCompany.lastUpdated}
                 columns={exportColumns}
                 rows={exportRows}
+                className="w-full"
               />
-              <Button onClick={() => setIsAiModalOpen(true)} variant="outline" className="border-primary/30 text-primary hover:bg-primary/5">
+              <Button onClick={() => setIsAiModalOpen(true)} variant="outline" className="border-primary/30 text-primary hover:bg-primary/5 w-full justify-center">
                 <Sparkles className="h-4 w-4 mr-1.5" /> AI Analyst Insights
               </Button>
             </div>
@@ -122,13 +120,13 @@ export function Company() {
       {/* Navigation Tabs */}
       <div className="border-b border-border bg-surface sticky top-16 z-40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8 overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-4 sm:space-x-8 overflow-x-auto scrollbar-hide py-1">
             {(['Overview', 'Financials', 'Segments', 'Business & ESG', 'Competitors'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`whitespace-nowrap py-4 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
-                  activeTab === tab ? 'border-primary text-primary font-bold' : 'border-transparent text-text-muted hover:text-text-main hover:border-border'
+                className={`whitespace-nowrap py-3 text-xs sm:text-sm font-semibold border-b-2 transition-colors cursor-pointer active:scale-95 ${
+                  activeTab === tab ? 'border-primary text-primary font-bold' : 'border-transparent text-text-muted hover:text-text-main'
                 }`}
               >
                 {tab}

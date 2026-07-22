@@ -145,34 +145,32 @@ export function Country() {
   return (
     <Layout>
       <div className="bg-surface border-b border-border">
-        <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-6">
-              <ResearchGlyph kind="country" label={currentCountry.code} className="h-20 w-20 shrink-0" />
+        <div className="container mx-auto px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-6">
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+              <ResearchGlyph kind="country" label={currentCountry.code} className="h-16 w-16 sm:h-20 sm:w-20 shrink-0" />
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-3xl font-bold font-heading text-text-main">{currentCountry.name}</h1>
-                  <Badge variant="outline" className="font-mono">{currentCountry.region}</Badge>
+                <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap">
+                  <h1 className="text-2xl sm:text-3xl font-bold font-heading text-text-main">{currentCountry.name}</h1>
+                  <Badge variant="outline" className="font-mono text-xs">{currentCountry.region}</Badge>
                   <PremiumBadge>Government Dataset</PremiumBadge>
-                  <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 font-mono">
-                    <RefreshCw className="h-3 w-3 mr-1 animate-spin" /> World Bank API Connected
-                  </Badge>
                 </div>
-                <p className="text-text-muted max-w-2xl">
+                <p className="text-text-muted max-w-2xl text-xs sm:text-sm leading-relaxed">
                   {currentCountry.description}
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
               <ExportDropdown
                 title={`${currentCountry.name} Macroeconomic Indicators`}
                 source="World Bank Open Data Group"
                 lastUpdated="2026-07-22"
                 columns={exportColumns}
                 rows={exportRows}
+                className="w-full sm:w-auto"
               />
-              <Button onClick={() => setIsAiModalOpen(true)} variant="outline">
+              <Button onClick={() => setIsAiModalOpen(true)} variant="outline" className="w-full sm:w-auto justify-center">
                 <Sparkles className="h-4 w-4 mr-1.5" /> AI Insight
               </Button>
             </div>

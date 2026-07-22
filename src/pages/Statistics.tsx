@@ -90,33 +90,35 @@ export function Statistics() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
         
         <div className="container mx-auto relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-8">
-            <h1 className="text-4xl font-bold font-heading mb-4">Statistics</h1>
-            <p className="text-text-muted text-lg">Search and preview verified market, financial, country, and industry datasets.</p>
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold font-heading mb-3">Statistics</h1>
+            <p className="text-text-muted text-base sm:text-lg">Search and preview verified market, financial, country, and industry datasets.</p>
           </div>
 
-          <form onSubmit={handleSearchSubmit} className="mx-auto flex max-w-4xl items-center rounded-xl bg-background p-1.5 shadow-lg border border-primary/20 ring-1 ring-primary/10 transition-shadow hover:shadow-xl focus-within:ring-primary/30">
-            <Sparkles className="ml-4 h-5 w-5 text-primary animate-pulse shrink-0" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g. 'Healthcare spending by country' or 'Top EV companies in Europe'"
-              className="w-full bg-transparent px-4 py-4 text-text-main text-lg outline-none placeholder:text-text-muted/60 font-medium"
-            />
-            <Button type="submit" size="lg" className="rounded-lg bg-primary hover:bg-primary/90 px-8 py-6 text-white font-semibold shadow-md transition-transform active:scale-95 shrink-0">
+          <form onSubmit={handleSearchSubmit} className="mx-auto flex flex-col sm:flex-row max-w-4xl items-stretch sm:items-center rounded-xl bg-background p-2 sm:p-1.5 shadow-lg border border-primary/20 ring-1 ring-primary/10 transition-shadow hover:shadow-xl focus-within:ring-primary/30 gap-2 sm:gap-0">
+            <div className="flex items-center flex-1 px-2 py-1">
+              <Sparkles className="h-5 w-5 text-primary animate-pulse shrink-0 ml-1" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="e.g. 'Healthcare spending by country' or 'Top EV companies'"
+                className="w-full bg-transparent px-3 py-2 text-text-main text-base sm:text-lg outline-none placeholder:text-text-muted/60 font-medium"
+              />
+            </div>
+            <Button type="submit" size="lg" className="rounded-lg bg-primary hover:bg-primary/90 px-8 py-3.5 sm:py-6 text-white font-semibold shadow-md transition-transform active:scale-95 shrink-0 w-full sm:w-auto">
               Analyze
             </Button>
           </form>
 
-          <div className="flex flex-wrap justify-center gap-3 mt-6">
-            <span className="text-sm text-text-muted mt-1 mr-2">Try asking:</span>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4 sm:mt-6">
+            <span className="text-xs sm:text-sm text-text-muted w-full sm:w-auto text-center sm:text-left mb-1 sm:mb-0">Try asking:</span>
             {['India GDP last 20 years', 'Top EV companies in Europe', 'Healthcare spending by country'].map(suggestion => (
               <Badge
                 key={suggestion}
                 variant="outline"
                 onClick={() => handleSuggestionClick(suggestion)}
-                className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors border-border/60"
+                className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors border-border/60 text-xs py-1"
               >
                 {suggestion}
               </Badge>
@@ -125,32 +127,32 @@ export function Statistics() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
         {isSearching ? (
           <div className="py-20 text-center flex flex-col items-center">
             <div className="h-12 w-12 rounded-full border-4 border-primary border-t-transparent animate-spin mb-4" />
-            <p className="text-text-muted font-mono animate-pulse">Synthesizing data sources for "{query}"...</p>
+            <p className="text-text-muted font-mono animate-pulse text-sm">Synthesizing data sources for "{query}"...</p>
           </div>
         ) : (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-12">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 sm:space-y-12">
             
             {/* AI Synthesized Answer Block */}
             <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-surface shadow-sm overflow-hidden">
-              <div className="px-6 py-4 border-b border-primary/10 bg-background/50 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-primary font-medium">
-                  <Sparkles className="h-5 w-5" />
-                  <span>AI Data Synthesis (UN Population Division)</span>
+              <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-primary/10 bg-background/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2 text-primary font-medium text-xs sm:text-sm flex-wrap">
+                  <Sparkles className="h-4 w-4 shrink-0" />
+                  <span className="font-semibold">AI Data Synthesis (UN Population Division)</span>
                   <PremiumBadge>AI Verified</PremiumBadge>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-text-muted font-mono bg-background px-3 py-1 rounded-full border border-border hidden sm:flex">
+                <div className="flex items-center gap-2 text-[11px] text-text-muted font-mono bg-background px-3 py-1 rounded-full border border-border w-fit">
                   <span>Query Match:</span>
                   <span className="text-text-main font-semibold">High Confidence (98%)</span>
                 </div>
               </div>
-              <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8 items-center">
+              <div className="p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                 <div>
-                  <h2 className="text-2xl font-bold font-heading mb-4">India surpasses China as world's most populous nation</h2>
-                  <p className="text-text-muted leading-relaxed mb-6">
+                  <h2 className="text-xl sm:text-2xl font-bold font-heading mb-3 sm:mb-4">India surpasses China as world's most populous nation</h2>
+                  <p className="text-text-muted text-sm leading-relaxed mb-6">
                     Based on aggregated UN demographic data and national census projections, India's population officially surpassed China's in 2023, reaching approximately 1.43 billion. China's population growth has plateaued and begun a slight decline, while India's growth rate, though slowing, remains positive.
                   </p>
                   <LockedPreview
@@ -158,12 +160,12 @@ export function Statistics() {
                     title="AI Deep Financial Insights"
                     value="Unlock source-by-source reasoning, historical search, advanced filters, downloadable evidence tables, and cited report sections."
                   >
-                    <div className="p-4 text-sm text-text-main leading-relaxed">
+                    <div className="p-4 text-xs sm:text-sm text-text-main leading-relaxed">
                       Premium synthesis adds demographic cohort decomposition, scenario forecasts, sensitivity bands, methodology critique, and machine-readable API outputs for every matched dataset.
                     </div>
                   </LockedPreview>
-                  <div className="flex gap-3 flex-wrap">
-                    <Button onClick={handleSaveToWorkspace} variant="default" className="bg-primary hover:bg-primary/90 text-white shadow-sm">
+                  <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3">
+                    <Button onClick={handleSaveToWorkspace} variant="default" className="bg-primary hover:bg-primary/90 text-white shadow-sm w-full sm:w-auto justify-center">
                       <BarChart2 className="mr-2 h-4 w-4" /> {isSaved ? 'Saved' : 'Save to Workspace'}
                     </Button>
                     <ExportDropdown
@@ -172,14 +174,15 @@ export function Statistics() {
                       lastUpdated="2026-07-22"
                       columns={exportColumns}
                       rows={exportRows}
+                      className="w-full sm:w-auto"
                     />
-                    <Button onClick={() => setIsAiModalOpen(true)} variant="outline">
-                      <Sparkles className="h-4 w-4 mr-1" /> Deep AI Analysis
+                    <Button onClick={() => setIsAiModalOpen(true)} variant="outline" className="w-full sm:w-auto justify-center">
+                      <Sparkles className="h-4 w-4 mr-1.5" /> Deep AI Analysis
                     </Button>
                   </div>
                 </div>
-                <div className="bg-background rounded-xl p-4 border border-border shadow-sm">
-                  <ReactECharts option={popChartOption} style={{ height: '300px' }} />
+                <div className="bg-background rounded-xl p-3 sm:p-4 border border-border shadow-sm">
+                  <ReactECharts option={popChartOption} style={{ height: '280px' }} />
                   <p className="mt-2 text-center text-xs font-mono text-text-muted">
                     Preview range only. Premium unlocks full history, advanced filters, bulk results, and saved queries.
                   </p>

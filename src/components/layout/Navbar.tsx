@@ -83,36 +83,52 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-b border-border bg-surface px-4 py-4 space-y-3">
-          <form onSubmit={handleSearchSubmit} className="relative mb-3">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-text-muted" />
+        <div className="md:hidden border-b border-border bg-surface/95 backdrop-blur-lg px-4 py-5 space-y-4 shadow-xl animate-in slide-in-from-top-2 duration-200">
+          <form onSubmit={handleSearchSubmit} className="relative mb-2">
+            <Search className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search statistics, reports..."
-              className="w-full h-9 rounded-md border border-border bg-background px-8 py-2 text-sm outline-none focus:border-primary"
+              placeholder="Search 3.5M+ statistics, reports..."
+              className="w-full h-10 rounded-lg border border-border bg-background pl-9 pr-4 text-sm text-text-main outline-none focus:border-primary"
             />
           </form>
 
-          <nav className="flex flex-col space-y-2 text-sm font-medium text-text-main">
+          <nav className="flex flex-col space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`px-2 py-1.5 rounded hover:bg-background ${
-                  isActivePath(item.path) ? 'text-primary font-bold bg-primary/10' : ''
+                className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                  isActivePath(item.path)
+                    ? 'text-primary bg-primary/10 font-bold border-l-4 border-primary pl-2'
+                    : 'text-text-main hover:bg-background hover:text-primary'
                 }`}
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span className="text-xs text-text-muted font-mono opacity-60">&rarr;</span>
               </Link>
             ))}
           </nav>
 
-          <div className="flex gap-2 pt-2 border-t border-border">
-            <Button variant="ghost" size="sm" className="w-full" onClick={() => { setIsMobileMenuOpen(false); navigate('/login'); }}>Log in</Button>
-            <Button size="sm" className="w-full" onClick={() => { setIsMobileMenuOpen(false); navigate('/signup'); }}>Sign up</Button>
+          <div className="grid grid-cols-2 gap-3 pt-3 border-t border-border">
+            <Button
+              variant="outline"
+              size="md"
+              className="w-full justify-center h-10 text-sm font-medium"
+              onClick={() => { setIsMobileMenuOpen(false); navigate('/login'); }}
+            >
+              Log in
+            </Button>
+            <Button
+              size="md"
+              className="w-full justify-center h-10 text-sm font-semibold bg-primary hover:bg-primary/90 text-white shadow-sm"
+              onClick={() => { setIsMobileMenuOpen(false); navigate('/signup'); }}
+            >
+              Sign up
+            </Button>
           </div>
         </div>
       )}
