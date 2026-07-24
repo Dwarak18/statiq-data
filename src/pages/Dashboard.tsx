@@ -47,12 +47,12 @@ export function Dashboard() {
         type: 'line',
         data: [15, 22, 34, 52, 71, 85],
         smooth: true,
-        itemStyle: { color: '#0EA5E9' },
+        itemStyle: { color: '#C8A45D' },
         lineStyle: { width: 3 },
         areaStyle: {
           color: {
             type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-            colorStops: [{ offset: 0, color: 'rgba(14, 165, 233, 0.4)' }, { offset: 1, color: 'rgba(14, 165, 233, 0.0)' }]
+            colorStops: [{ offset: 0, color: 'rgba(200, 164, 93, 0.4)' }, { offset: 1, color: 'rgba(200, 164, 93, 0.0)' }]
           }
         }
       },
@@ -61,7 +61,7 @@ export function Dashboard() {
         type: 'line',
         data: [65, 72, 81, 89, 94, 96],
         smooth: true,
-        itemStyle: { color: '#1E3A8A' },
+        itemStyle: { color: '#E3C47A' },
         lineStyle: { width: 3, type: 'dashed' }
       }
     ]
@@ -74,9 +74,9 @@ export function Dashboard() {
     xAxis: { type: 'category', data: ['2021', '2022', '2023', '2024', '2025'] },
     yAxis: { type: 'value', axisLabel: { formatter: '${value}B' } },
     series: [
-      { name: 'North America', type: 'bar', stack: 'total', data: [85, 92, 105, 125, 145], itemStyle: { color: '#1E3A8A' } },
-      { name: 'Asia Pacific', type: 'bar', stack: 'total', data: [45, 55, 68, 85, 110], itemStyle: { color: '#0EA5E9' } },
-      { name: 'Europe', type: 'bar', stack: 'total', data: [35, 42, 50, 60, 75], itemStyle: { color: '#10B981' } }
+      { name: 'North America', type: 'bar', stack: 'total', data: [85, 92, 105, 125, 145], itemStyle: { color: '#C8A45D' } },
+      { name: 'Asia Pacific', type: 'bar', stack: 'total', data: [45, 55, 68, 85, 110], itemStyle: { color: '#E3C47A' } },
+      { name: 'Europe', type: 'bar', stack: 'total', data: [35, 42, 50, 60, 75], itemStyle: { color: '#A3A3A3' } }
     ]
   };
 

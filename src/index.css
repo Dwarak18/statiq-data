@@ -1,17 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1E3A8A;
-  --color-secondary: #2563EB;
-  --color-accent: #0EA5E9;
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
-  --color-background: #F8FAFC;
-  --color-surface: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-text-main: #111827;
-  --color-text-muted: #6B7280;
+  --color-primary: #C8A45D;
+  --color-hover: #E3C47A;
+  --color-primary-hover: #E3C47A;
+  --color-accent: #E3C47A;
+
+  --color-background: #09090B;
+  --color-surface: #111111;
+  --color-card: #171717;
+  --color-cards: #171717;
+  --color-border: #2A2A2A;
+
+  --color-success: #2ECC71;
+  --color-warning: #F39C12;
+  --color-danger: #E74C3C;
+  --color-info: #C8A45D;
+
+  --color-text: #F5F5F5;
+  --color-text-main: #F5F5F5;
+  --color-secondary: #A3A3A3;
+  --color-text-secondary: #A3A3A3;
+  --color-muted: #A3A3A3;
+  --color-text-muted: #A3A3A3;
 
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Plus Jakarta Sans', sans-serif;
@@ -21,9 +32,31 @@
 }
 
 @layer base {
+  :root {
+    --color-primary: #C8A45D;
+    --color-hover: #E3C47A;
+    --color-accent: #E3C47A;
+    --color-background: #09090B;
+    --color-surface: #111111;
+    --color-card: #171717;
+    --color-cards: #171717;
+    --color-border: #2A2A2A;
+    --color-success: #2ECC71;
+    --color-warning: #F39C12;
+    --color-danger: #E74C3C;
+    --color-info: #C8A45D;
+    --color-text: #F5F5F5;
+    --color-text-main: #F5F5F5;
+    --color-secondary: #A3A3A3;
+    --color-text-secondary: #A3A3A3;
+    --color-muted: #A3A3A3;
+    --color-text-muted: #A3A3A3;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
@@ -42,6 +75,9 @@
   /* Prevent auto-zoom on mobile WebKit inputs */
   input, select, textarea {
     font-size: 16px;
+    background-color: var(--color-surface);
+    color: var(--color-text-main);
+    border-color: var(--color-border);
   }
   @media (min-width: 640px) {
     input, select, textarea {

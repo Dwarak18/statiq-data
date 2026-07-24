@@ -31,8 +31,8 @@ export function Company() {
     xAxis: { type: 'category', data: previewFinancialHistory.map(f => f.fiscalYear).reverse() },
     yAxis: { type: 'value', axisLabel: { formatter: '${value}B' } },
     series: [
-      { name: 'Revenue', type: 'line', smooth: true, data: previewFinancialHistory.map(f => f.revenue).reverse(), itemStyle: { color: '#1E3A8A' }, areaStyle: { color: 'rgba(30,58,138,0.1)' } },
-      { name: 'Net Income', type: 'line', smooth: true, data: previewFinancialHistory.map(f => f.netIncome).reverse(), itemStyle: { color: '#0EA5E9' } }
+      { name: 'Revenue', type: 'line', smooth: true, data: previewFinancialHistory.map(f => f.revenue).reverse(), itemStyle: { color: '#C8A45D' }, areaStyle: { color: 'rgba(200,164,93,0.15)' } },
+      { name: 'Net Income', type: 'line', smooth: true, data: previewFinancialHistory.map(f => f.netIncome).reverse(), itemStyle: { color: '#E3C47A' } }
     ]
   };
 
@@ -40,8 +40,8 @@ export function Company() {
     ...revenueChart,
     xAxis: { type: 'category', data: currentCompany.financialHistory.map(f => f.fiscalYear).reverse() },
     series: [
-      { name: 'Revenue', type: 'line', smooth: true, data: currentCompany.financialHistory.map(f => f.revenue).reverse(), itemStyle: { color: '#1E3A8A' }, areaStyle: { color: 'rgba(30,58,138,0.1)' } },
-      { name: 'Net Income', type: 'line', smooth: true, data: currentCompany.financialHistory.map(f => f.netIncome).reverse(), itemStyle: { color: '#0EA5E9' } }
+      { name: 'Revenue', type: 'line', smooth: true, data: currentCompany.financialHistory.map(f => f.revenue).reverse(), itemStyle: { color: '#C8A45D' }, areaStyle: { color: 'rgba(200,164,93,0.15)' } },
+      { name: 'Net Income', type: 'line', smooth: true, data: currentCompany.financialHistory.map(f => f.netIncome).reverse(), itemStyle: { color: '#E3C47A' } }
     ]
   };
 

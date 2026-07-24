@@ -91,11 +91,11 @@ export function Industry() {
         type: 'line',
         smooth: true,
         data: selectedSector.growthData,
-        itemStyle: { color: '#0EA5E9' },
+        itemStyle: { color: '#C8A45D' },
         areaStyle: {
           color: {
             type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-            colorStops: [{ offset: 0, color: 'rgba(14, 165, 233, 0.4)' }, { offset: 1, color: 'rgba(14, 165, 233, 0)' }]
+            colorStops: [{ offset: 0, color: 'rgba(200, 164, 93, 0.4)' }, { offset: 1, color: 'rgba(200, 164, 93, 0)' }]
           }
         }
       }
@@ -204,7 +204,7 @@ export function Industry() {
                   legend: { data: ['Market Size', 'Peer Median', 'Premium Forecast'], bottom: 0 },
                   series: [
                     ...(growthOption.series as any[]),
-                    { name: 'Peer Median', type: 'line', smooth: true, data: [90, 120, 170, 230, 310, 390], itemStyle: { color: '#10B981' } },
+                    { name: 'Peer Median', type: 'line', smooth: true, data: [90, 120, 170, 230, 310, 390], itemStyle: { color: '#E3C47A' } },
                     { name: 'Premium Forecast', type: 'line', smooth: true, data: [130, 175, 245, 340, 475, 650], itemStyle: { color: '#F59E0B' } }
                   ]
                 }}

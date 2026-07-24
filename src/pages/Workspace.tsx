@@ -66,7 +66,7 @@ export function Workspace() {
     xAxis: { type: 'category', data: ['Q1', 'Q2', 'Q3', 'Q4'] },
     yAxis: { type: 'value', show: false },
     series: [
-      { type: 'bar', data: [12, 19, 15, 22], itemStyle: { color: '#0EA5E9' } }
+      { type: 'bar', data: [12, 19, 15, 22], itemStyle: { color: '#C8A45D' } }
     ]
   };
 
@@ -77,9 +77,9 @@ export function Workspace() {
         type: 'pie',
         radius: ['50%', '80%'],
         data: [
-          { value: 1048, name: 'Tech', itemStyle: { color: '#1E3A8A' } },
-          { value: 735, name: 'Health', itemStyle: { color: '#0EA5E9' } },
-          { value: 580, name: 'Fin', itemStyle: { color: '#10B981' } },
+          { value: 1048, name: 'Tech', itemStyle: { color: '#C8A45D' } },
+          { value: 735, name: 'Health', itemStyle: { color: '#E3C47A' } },
+          { value: 580, name: 'Fin', itemStyle: { color: '#A3A3A3' } },
         ]
       }
     ]

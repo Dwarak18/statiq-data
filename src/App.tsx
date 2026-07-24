@@ -10,6 +10,7 @@ import { Country } from './pages/Country';
 import { Search } from './pages/Search';
 import { Statistics } from './pages/Statistics';
 import { Workspace } from './pages/Workspace';
+import { Pricing } from './pages/Pricing';
 import { AuthPage } from './pages/Auth';
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/country" element={<Country />} />
           <Route path="/search" element={<Search />} />
           <Route path="/workspace" element={<Workspace />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </BrowserRouter>
     </ToastProvider>

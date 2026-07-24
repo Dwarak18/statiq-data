@@ -69,7 +69,7 @@ export function Search() {
     xAxis: { type: 'category', data: ['2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024'] },
     yAxis: { type: 'value', min: 1.3, axisLabel: { formatter: '{value}B' } },
     series: [
-      { name: 'India', type: 'line', data: [1.23, 1.26, 1.30, 1.33, 1.36, 1.39, 1.41, 1.44], itemStyle: { color: '#0EA5E9' }, smooth: true, lineStyle: { width: 3 } },
+      { name: 'India', type: 'line', data: [1.23, 1.26, 1.30, 1.33, 1.36, 1.39, 1.41, 1.44], itemStyle: { color: '#C8A45D' }, smooth: true, lineStyle: { width: 3 } },
       { name: 'China', type: 'line', data: [1.34, 1.35, 1.37, 1.38, 1.40, 1.41, 1.41, 1.41], itemStyle: { color: '#EF4444' }, smooth: true, lineStyle: { width: 3 } }
     ]
   };
