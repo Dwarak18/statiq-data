@@ -12,6 +12,7 @@ import { Statistics } from './pages/Statistics';
 import { Workspace } from './pages/Workspace';
 import { Pricing } from './pages/Pricing';
 import { AuthPage } from './pages/Auth';
+import { Advertising } from './pages/Advertising';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/workspace" element={<Workspace />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/advertising" element={<Advertising />} />
         </Routes>
       </BrowserRouter>
     </ToastProvider>

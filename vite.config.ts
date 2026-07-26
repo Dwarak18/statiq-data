@@ -11,15 +11,32 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, './src'),
       },
     },
+    // Use './' so asset paths work on Hostinger subdirectory deployments
+    base: './',
     build: {
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-            'vendor-echarts': ['echarts', 'echarts-for-react'],
-            'vendor-icons': ['lucide-react'],
-            'vendor-motion': ['motion'],
+          manualChunks(id) {
+            // Must use precise path matching to avoid circular chunk deps
+            if (id.includes('/node_modules/echarts') || id.includes('/node_modules/zrender')) {
+              return 'vendor-echarts';
+            }
+            if (
+              id.includes('/node_modules/react/') ||
+              id.includes('/node_modules/react-dom/') ||
+              id.includes('/node_modules/react-router') ||
+              id.includes('/node_modules/scheduler/')
+            ) {
+              return 'vendor-react';
+            }
+            if (id.includes('/node_modules/lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('/node_modules/motion') || id.includes('/node_modules/@motionone')) {
+              return 'vendor-motion';
+            }
+            // Leave other node_modules in the default chunk to avoid circular deps
           },
         },
       },
