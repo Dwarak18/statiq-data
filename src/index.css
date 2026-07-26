@@ -32,7 +32,9 @@
 }
 
 @layer base {
-  :root {
+  /* ── Dark theme (default) ── */
+  :root,
+  html.dark {
     --color-primary: #C8A45D;
     --color-hover: #E3C47A;
     --color-accent: #E3C47A;
@@ -53,10 +55,37 @@
     --color-text-muted: #A3A3A3;
   }
 
+  /* ── Light theme ── */
+  html.light {
+    --color-primary: #B8913F;
+    --color-hover: #A07830;
+    --color-accent: #A07830;
+    --color-background: #F8F8F6;
+    --color-surface: #FFFFFF;
+    --color-card: #F2F1EE;
+    --color-cards: #F2F1EE;
+    --color-border: #E0DDD6;
+    --color-success: #1A9E52;
+    --color-warning: #C47D0A;
+    --color-danger: #C0392B;
+    --color-info: #B8913F;
+    --color-text: #111111;
+    --color-text-main: #111111;
+    --color-secondary: #5A5A5A;
+    --color-text-secondary: #5A5A5A;
+    --color-muted: #7A7A7A;
+    --color-text-muted: #7A7A7A;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     color-scheme: dark;
+  }
+
+  /* Smooth transition when switching themes */
+  *, *::before, *::after {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
   }
 
   body {

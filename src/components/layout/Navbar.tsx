@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, BarChart2, Menu, X, Command, Bell, User, Sparkles, SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SpotlightSearchModal } from '@/components/ui/SpotlightSearchModal';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export function Navbar() {
   const [isSpotlightOpen, setIsSpotlightOpen] = useState(false);
@@ -98,6 +99,8 @@ export function Navbar() {
                 <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary" />
               </button>
 
+              <ThemeToggle />
+
               <Button 
                 variant="outline" 
                 size="sm" 
@@ -174,6 +177,12 @@ export function Navbar() {
               >
                 Get Started
               </Button>
+            </div>
+
+            {/* Theme toggle in mobile menu */}
+            <div className="flex items-center justify-between pt-3 border-t border-border">
+              <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">Appearance</span>
+              <ThemeToggle />
             </div>
           </div>
         )}
