@@ -1,5 +1,5 @@
 /**
- * Institutional Financial Chart Theme Helper for STATIQDATA
+ * Institutional Financial Chart Theme Helper for STATIQONE
  * Enforces unified obsidian background, gold accent line styles, dark tooltips, and crisp font formatting.
  */
 

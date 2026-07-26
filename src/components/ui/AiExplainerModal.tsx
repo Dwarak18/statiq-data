@@ -40,7 +40,7 @@ export function AiExplainerModal({ isOpen, onClose, datasetTitle }: AiExplainerM
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="STATIQDATA AI Data Analyst">
+    <Modal isOpen={isOpen} onClose={onClose} title="STATIQONE AI Data Analyst">
       <div className="flex rounded-lg bg-background p-1 mb-6 border border-border">
         <button
           onClick={() => { setActiveTab('explain'); handleGenerate('explain'); }}

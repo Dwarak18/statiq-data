@@ -216,7 +216,7 @@ export function Industry() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <VerificationPanel
-            provider="STATIQDATA Industry Research"
+            provider="STATIQONE Industry Research"
             source="Institutional Data + Exchange Verified"
             lastUpdated="2026-07-22"
             frequency="Monthly / Synced Hourly"

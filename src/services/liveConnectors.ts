@@ -100,5 +100,5 @@ export async function fetchWorldBankCountryData(countryCode: string): Promise<Pa
  * Utility to generate verification citation string
  */
 export function buildCitation(title: string, source: VerifiedSource, date: string): string {
-  return `STATIQDATA Citation: "${title}". Source: ${source.name} (${source.code}). Verified On: ${date}. URL: ${source.url}`;
+  return `STATIQONE Citation: "${title}". Source: ${source.name} (${source.code}). Verified On: ${date}. URL: ${source.url}`;
 }

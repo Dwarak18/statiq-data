@@ -30,15 +30,15 @@ export function exportDataset(data: ExportableDataset, format: ExportFormat): st
     case 'csv': {
       const header = data.columns.join(',');
       const rowsText = data.rows.map((row) => row.map((val) => `"${val}"`).join(',')).join('\n');
-      const csvContent = `# Source: ${data.source}\n# Platform: STATIQDATA Intelligence\n# Last Updated: ${data.lastUpdated}\n${header}\n${rowsText}`;
-      downloadFile(csvContent, `${sanitizeFilename}_statiqdata.csv`, 'text/csv;charset=utf-8;');
-      return `Exported ${sanitizeFilename}_statiqdata.csv successfully!`;
+      const csvContent = `# Source: ${data.source}\n# Platform: STATIQONE Intelligence\n# Last Updated: ${data.lastUpdated}\n${header}\n${rowsText}`;
+      downloadFile(csvContent, `${sanitizeFilename}_statiqone.csv`, 'text/csv;charset=utf-8;');
+      return `Exported ${sanitizeFilename}_statiqone.csv successfully!`;
     }
 
     case 'json': {
       const jsonStructure = {
         metadata: {
-          platform: 'STATIQDATA Research Platform',
+          platform: 'STATIQONE Research Platform',
           title: data.title,
           source: data.source,
           lastUpdated: data.lastUpdated,
@@ -54,8 +54,8 @@ export function exportDataset(data: ExportableDataset, format: ExportFormat): st
         })
       };
       const jsonContent = JSON.stringify(jsonStructure, null, 2);
-      downloadFile(jsonContent, `${sanitizeFilename}_statiqdata.json`, 'application/json');
-      return `Exported ${sanitizeFilename}_statiqdata.json successfully!`;
+      downloadFile(jsonContent, `${sanitizeFilename}_statiqone.json`, 'application/json');
+      return `Exported ${sanitizeFilename}_statiqone.json successfully!`;
     }
 
     case 'xml': {
@@ -71,22 +71,22 @@ export function exportDataset(data: ExportableDataset, format: ExportFormat): st
         })
         .join('\n');
 
-      const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<STATIQDATADataset title="${data.title}" source="${data.source}" updated="${data.lastUpdated}">\n${xmlRows}\n</STATIQDATADataset>`;
-      downloadFile(xmlContent, `${sanitizeFilename}_statiqdata.xml`, 'application/xml');
-      return `Exported ${sanitizeFilename}_statiqdata.xml successfully!`;
+      const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<STATIQONEDataset title="${data.title}" source="${data.source}" updated="${data.lastUpdated}">\n${xmlRows}\n</STATIQONEDataset>`;
+      downloadFile(xmlContent, `${sanitizeFilename}_statiqone.xml`, 'application/xml');
+      return `Exported ${sanitizeFilename}_statiqone.xml successfully!`;
     }
 
     case 'excel': {
       const header = data.columns.join('\t');
       const rowsText = data.rows.map((row) => row.join('\t')).join('\n');
-      const excelContent = `Platform:\tSTATIQDATA Intelligence\nTitle:\t${data.title}\nSource:\t${data.source}\nUpdated:\t${data.lastUpdated}\n\n${header}\n${rowsText}`;
-      downloadFile(excelContent, `${sanitizeFilename}_statiqdata.xls`, 'application/vnd.ms-excel');
-      return `Exported ${sanitizeFilename}_statiqdata.xls successfully!`;
+      const excelContent = `Platform:\tSTATIQONE Intelligence\nTitle:\t${data.title}\nSource:\t${data.source}\nUpdated:\t${data.lastUpdated}\n\n${header}\n${rowsText}`;
+      downloadFile(excelContent, `${sanitizeFilename}_statiqone.xls`, 'application/vnd.ms-excel');
+      return `Exported ${sanitizeFilename}_statiqone.xls successfully!`;
     }
 
     case 'pdf': {
       window.print();
-      return `Opened print dialog for STATIQDATA PDF export of ${data.title}`;
+      return `Opened print dialog for STATIQONE PDF export of ${data.title}`;
     }
 
     default:

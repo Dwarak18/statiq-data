@@ -6,7 +6,7 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 /**
- * Custom Bespoke Vector Icons crafted for STATIQDATA Enterprise Intelligence Platform
+ * Custom Bespoke Vector Icons crafted for STATIQONE Enterprise Intelligence Platform
  */
 
 export function InstitutionalEmblemIcon({ size = 24, className = '', ...props }: IconProps) {

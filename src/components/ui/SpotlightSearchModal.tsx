@@ -137,7 +137,7 @@ export function SpotlightSearchModal({ isOpen, onClose }: SpotlightSearchModalPr
             <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 rounded bg-card border border-border font-mono text-[10px]">↵</kbd> select</span>
             <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 rounded bg-card border border-border font-mono text-[10px]">esc</kbd> close</span>
           </div>
-          <span className="font-mono text-primary font-semibold">STATIQDATA Intelligence</span>
+          <span className="font-mono text-primary font-semibold">STATIQONE Intelligence</span>
         </div>
       </div>
     </div>

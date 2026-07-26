@@ -29,13 +29,13 @@ export function Navbar() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo & Main Nav */}
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2.5 group" aria-label="STATIQDATA Home">
+            <Link to="/" className="flex items-center gap-2.5 group" aria-label="STATIQONE Home">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-surface border border-primary/30 text-primary group-hover:border-primary transition-all">
                 <BarChart2 className="h-4 w-4" />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-bold tracking-tight font-heading text-text-main flex items-center gap-1.5">
-                  STATIQ<span className="text-primary">DATA</span>
+                  STATIQ<span className="text-primary">ONE</span>
                 </span>
               </div>
             </Link>

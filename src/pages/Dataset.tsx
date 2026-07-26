@@ -253,7 +253,7 @@ export function Dataset() {
             />
 
             <VerificationPanel
-              provider="STATIQDATA Research Cloud"
+              provider="STATIQONE Research Cloud"
               source="Verified Official Source"
               lastUpdated="2026-07-22"
               frequency="Synced Hourly"
@@ -269,7 +269,7 @@ export function Dataset() {
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="p-6">
                 <h3 className="font-heading font-bold text-base text-primary mb-2 flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 mr-2" /> Ask STATIQDATA AI
+                  <Sparkles className="h-4 w-4 mr-2" /> Ask STATIQONE AI
                 </h3>
                 <p className="text-xs text-text-muted leading-relaxed mb-4">
                   North America leads global AI spending with $130B projected for 2025, while Asia-Pacific exhibits the highest growth velocity (CAGR 37.8%).

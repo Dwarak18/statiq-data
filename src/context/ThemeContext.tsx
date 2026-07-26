@@ -16,11 +16,11 @@ function getSystemTheme(): 'light' | 'dark' {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    return (localStorage.getItem('statiq-theme') as Theme) || 'system';
+    return (localStorage.getItem('statiq-one-theme') as Theme) || 'system';
   });
 
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
-    const saved = (localStorage.getItem('statiq-theme') as Theme) || 'system';
+    const saved = (localStorage.getItem('statiq-one-theme') as Theme) || 'system';
     return saved === 'system' ? getSystemTheme() : (saved as 'light' | 'dark');
   });
 
@@ -44,7 +44,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   const setTheme = (t: Theme) => {
-    localStorage.setItem('statiq-theme', t);
+    localStorage.setItem('statiq-one-theme', t);
     setThemeState(t);
   };
 

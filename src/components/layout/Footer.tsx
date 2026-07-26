@@ -8,7 +8,7 @@ export function Footer() {
 
   const handleSocialClick = (platform: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    showToast(`Redirecting to STATIQDATA official ${platform} portal...`, 'info');
+    showToast(`Redirecting to STATIQONE official ${platform} portal...`, 'info');
   };
 
   return (
@@ -20,7 +20,7 @@ export function Footer() {
               <BarChart2 className="h-4 w-4" />
             </div>
             <span className="text-base font-bold tracking-tight font-heading text-text-main">
-              STATIQ<span className="text-primary">DATA</span>
+              STATIQ<span className="text-primary">ONE</span>
             </span>
           </Link>
           <p className="text-xs text-text-muted max-w-sm mb-6 leading-relaxed">
@@ -50,7 +50,7 @@ export function Footer() {
         <div>
           <h4 className="font-bold uppercase font-mono tracking-wider mb-4 text-primary text-[11px]">Platform</h4>
           <ul className="space-y-2.5 text-xs text-text-muted">
-            <li><Link to="/company" className="hover:text-primary transition-colors">About STATIQDATA</Link></li>
+            <li><Link to="/company" className="hover:text-primary transition-colors">About STATIQONE</Link></li>
             <li><Link to="/workspace" className="hover:text-primary transition-colors">Data Feed Status</Link></li>
             <li><Link to="/dashboard" className="hover:text-primary transition-colors">Methodology & Audit</Link></li>
             <li><Link to="/search" className="hover:text-primary transition-colors">Institutional Sales</Link></li>
@@ -69,7 +69,7 @@ export function Footer() {
       </div>
       
       <div className="container mx-auto mt-12 flex flex-col md:flex-row items-center justify-between border-t border-border pt-6 text-[11px] text-text-muted font-mono">
-        <p>© 2027 STATIQDATA Intelligence Inc. All rights reserved. Confidential & Proprietary.</p>
+        <p>© 2027 STATIQONE Intelligence Inc. All rights reserved. Confidential & Proprietary.</p>
       </div>
     </footer>
   );

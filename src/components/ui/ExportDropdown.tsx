@@ -57,7 +57,7 @@ export function ExportDropdown({
       {isOpen && (
         <div className="absolute right-0 sm:right-0 left-0 sm:left-auto mt-2 w-full sm:w-64 max-h-[75vh] overflow-y-auto rounded-xl bg-surface border border-border shadow-xl z-50 py-2 text-xs font-medium backdrop-blur-md animate-in fade-in-50 zoom-in-95 duration-150">
           <div className="px-3 py-1.5 text-[10px] uppercase font-mono text-text-muted border-b border-border mb-1">
-            STATIQDATA Export Formats
+            STATIQONE Export Formats
           </div>
           <button
             onClick={() => handleExport('csv')}

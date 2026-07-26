@@ -36,7 +36,7 @@ export function AuthPage({ mode }: AuthPageProps) {
       return;
     }
 
-    showToast(isSignup ? 'Account created successfully. Welcome to STATIQDATA.' : 'Logged in successfully.', 'success');
+    showToast(isSignup ? 'Account created successfully. Welcome to STATIQONE.' : 'Logged in successfully.', 'success');
     navigate('/workspace');
   };
 
@@ -49,7 +49,7 @@ export function AuthPage({ mode }: AuthPageProps) {
               {isSignup ? 'Start Research Workspace' : 'Premium Research Access'}
             </Badge>
             <h1 className="font-heading text-3xl font-bold text-text-main sm:text-4xl">
-              {isSignup ? 'Create your STATIQDATA account' : 'Log in to STATIQDATA'}
+              {isSignup ? 'Create your STATIQONE account' : 'Log in to STATIQONE'}
             </h1>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-muted">
               Access verified datasets, premium previews, saved research, export-ready reports, and enterprise market intelligence from a dedicated account page.
@@ -78,7 +78,7 @@ export function AuthPage({ mode }: AuthPageProps) {
                       <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
                         <BarChart2 className="h-4 w-4" />
                       </div>
-                      <span className="font-heading text-lg font-bold text-primary">STATIQDATA</span>
+                      <span className="font-heading text-lg font-bold text-primary">STATIQONE</span>
                     </div>
                     <h2 className="font-heading text-xl font-bold text-text-main">
                       {isSignup ? 'Create account' : 'Welcome back'}
@@ -163,7 +163,7 @@ export function AuthPage({ mode }: AuthPageProps) {
                 </form>
 
                 <p className="mt-5 text-center text-xs text-text-muted">
-                  {isSignup ? 'Already have an account?' : 'New to STATIQDATA?'}{' '}
+                  {isSignup ? 'Already have an account?' : 'New to STATIQONE?'}{' '}
                   <Link to={isSignup ? '/login' : '/signup'} className="font-semibold text-primary hover:underline">
                     {isSignup ? 'Log in' : 'Create an account'}
                   </Link>

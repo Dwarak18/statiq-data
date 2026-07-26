@@ -111,7 +111,7 @@ const FAQS = [
   },
   {
     q: 'What verified primary sources are included in the dataset feeds?',
-    a: 'STATIQDATA directly ingests feeds from SEC EDGAR filings, Federal Reserve Economic Data (FRED), IMF, World Bank, Eurostat, OECD, ECB, and major global stock exchanges.'
+    a: 'STATIQONE directly ingests feeds from SEC EDGAR filings, Federal Reserve Economic Data (FRED), IMF, World Bank, Eurostat, OECD, ECB, and major global stock exchanges.'
   },
   {
     q: 'How does the enterprise API rate limit work?',

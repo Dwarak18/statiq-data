@@ -116,7 +116,7 @@ export function Dashboard() {
                   <PremiumBadge>Enterprise Ready</PremiumBadge>
                 </div>
                 <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-text-muted font-mono">
-                  <span>Compiled by STATIQDATA Research</span>
+                  <span>Compiled by STATIQONE Research</span>
                   <span className="hidden sm:inline">•</span>
                   <span>14 Datasets</span>
                 </div>
@@ -275,13 +275,13 @@ export function Dashboard() {
             </Card>
 
             <VerificationPanel
-              provider="STATIQDATA Market Intelligence"
+              provider="STATIQONE Market Intelligence"
               source="Exchange Verified + Institutional Data"
               lastUpdated="2026-07-22"
               frequency="Real-Time Feed / Synced Hourly"
               confidence="98%"
               quality="AAA"
-              citation="Global Technology Macro Trends dashboard, STATIQDATA Research Team"
+              citation="Global Technology Macro Trends dashboard, STATIQONE Research Team"
               dataset="14 verified dashboard source datasets"
               license="Enterprise Research License"
             />
@@ -315,7 +315,7 @@ export function Dashboard() {
                 <div className="rounded-lg border border-border bg-background p-3">
                   <div className="text-[10px] font-mono text-text-muted mb-1">Cover Page • Executive Summary • Table of Contents</div>
                   <h4 className="text-sm font-bold text-text-main">Global Technology Macro Trends 2026</h4>
-                  <p className="text-xs text-text-muted mt-1">42 pages • 18.4 MB • Updated 2026-07-22 • STATIQDATA Research Team</p>
+                  <p className="text-xs text-text-muted mt-1">42 pages • 18.4 MB • Updated 2026-07-22 • STATIQONE Research Team</p>
                 </div>
                 <LockedPreview className="min-h-[150px]" title="Export Professional Research Documents" value="Unlock all report pages, methodology appendix, PDF export, and analyst-authored investment brief.">
                   <div className="p-4 space-y-2">

@@ -69,7 +69,7 @@ export function Home() {
       showToast('Please enter a valid work email address', 'warning');
       return;
     }
-    showToast('Subscribed! You will receive weekly STATIQDATA Institutional Digests.', 'success');
+    showToast('Subscribed! You will receive weekly STATIQONE Institutional Digests.', 'success');
     setNewsletterEmail('');
   };
 

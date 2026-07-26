@@ -62,7 +62,7 @@ export function AuthModal({ isOpen, onClose, initialTab = 'login' }: { isOpen: b
     if (tab === 'login') {
       showToast('Logged in successfully!', 'success');
     } else {
-      showToast('Account created successfully! Welcome to STATIQDATA.', 'success');
+      showToast('Account created successfully! Welcome to STATIQONE.', 'success');
     }
     onClose();
   };

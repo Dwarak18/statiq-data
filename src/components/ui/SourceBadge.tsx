@@ -58,7 +58,7 @@ export function SourceBadge({
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 bg-primary/10 border border-primary/20 px-2 py-1 rounded-md text-xs font-mono font-bold text-primary">
             <Award className="h-3.5 w-3.5" />
-            <span>STATIQDATA Score: {qualityScore.score}/100 ({qualityScore.grade})</span>
+            <span>STATIQONE Score: {qualityScore.score}/100 ({qualityScore.grade})</span>
           </div>
         </div>
       </div>
