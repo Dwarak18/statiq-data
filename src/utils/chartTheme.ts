@@ -3,14 +3,14 @@
  * Enforces unified obsidian background, gold accent line styles, dark tooltips, and crisp font formatting.
  */
 
-export const GOLD_PRIMARY = '#C8A45D';
-export const GOLD_HOVER = '#E3C47A';
-export const GRAPHITE_BORDER = '#2A2A2A';
-export const CARD_BACKGROUND = '#171717';
-export const TEXT_MUTED = '#A3A3A3';
-export const TEXT_MAIN = '#F5F5F5';
-export const COLOR_SUCCESS = '#2ECC71';
-export const COLOR_DANGER = '#E74C3C';
+export const GOLD_PRIMARY = '#B9684E';
+export const GOLD_HOVER = '#A85B43';
+export const GRAPHITE_BORDER = '#DEDDD7';
+export const CARD_BACKGROUND = '#FBFAF7';
+export const TEXT_MUTED = '#77756E';
+export const TEXT_MAIN = '#20201E';
+export const COLOR_SUCCESS = '#657B6C';
+export const COLOR_DANGER = '#9A5B55';
 
 export const baseChartGrid = {
   left: '3%',
@@ -45,7 +45,7 @@ export const baseAxisStyle = {
   },
   splitLine: {
     lineStyle: {
-      color: 'rgba(42, 42, 42, 0.6)',
+      color: 'rgba(222, 221, 215, 0.6)',
       type: 'dashed',
     },
   },
@@ -72,8 +72,8 @@ export function createInstitutionalLineSeries(name: string, data: number[], isSe
             x2: 0,
             y2: 1,
             colorStops: [
-              { offset: 0, color: 'rgba(200, 164, 93, 0.35)' },
-              { offset: 1, color: 'rgba(200, 164, 93, 0.0)' },
+              { offset: 0, color: 'rgba(185, 104, 78, 0.35)' },
+              { offset: 1, color: 'rgba(185, 104, 78, 0.0)' },
             ],
           },
         }

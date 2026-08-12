@@ -80,7 +80,7 @@ export function SpotlightSearchModal({ isOpen, onClose }: SpotlightSearchModalPr
               <X className="h-4 w-4" />
             </button>
           )}
-          <Badge variant="outline" className="hidden sm:flex items-center gap-1 font-mono text-[10px] text-text-muted border-border">
+          <Badge variant="outline" className="hidden md:flex items-center gap-1 font-mono text-[10px] text-text-muted border-border">
             <Command className="h-3 w-3" /> K
           </Badge>
         </form>
@@ -132,7 +132,7 @@ export function SpotlightSearchModal({ isOpen, onClose }: SpotlightSearchModalPr
 
         {/* Footer info */}
         <div className="flex items-center justify-between px-4 py-2.5 border-t border-border bg-surface text-[11px] text-text-muted">
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 rounded bg-card border border-border font-mono text-[10px]">↑↓</kbd> navigate</span>
             <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 rounded bg-card border border-border font-mono text-[10px]">↵</kbd> select</span>
             <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 rounded bg-card border border-border font-mono text-[10px]">esc</kbd> close</span>

@@ -1,20 +1,19 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# StatIQ One
 
-# Run and deploy your AI Studio app
+Project documentation now lives in [`docs/`](./docs/README.md).
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/69d7f8cf-ff48-42cb-b795-734f591878d0
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
+## Quick Start
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Set `GEMINI_API_KEY` in [.env.local](./.env.example) or your local env file.
 3. Run the app:
    `npm run dev`
+
+## Helpful Links
+
+- [Project Overview](./docs/project-overview.md)
+- [Setup and Scripts](./docs/setup.md)
+- [Design System](./docs/design-system.md)
+- [Testing](./docs/testing.md)
+- [Scroll and Navigation Fix](./docs/scroll-navigation-fix.md)
