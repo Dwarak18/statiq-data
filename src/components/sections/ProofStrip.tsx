@@ -23,7 +23,7 @@ export function ProofStrip() {
             <div>
               <div className="flex items-center gap-2 font-mono text-xs text-[#B9684E] uppercase tracking-wider mb-1">
                 <ShieldCheck className="h-4 w-4" />
-                INSTITUTIONAL TRUST &amp; SOURCE INTEGRITY
+                01 — INSTITUTIONAL TRUST &amp; SOURCE INTEGRITY
               </div>
               <p className="text-xs sm:text-sm text-[#77756E]">
                 Directly ingested from primary regulatory filings and sovereign institutions

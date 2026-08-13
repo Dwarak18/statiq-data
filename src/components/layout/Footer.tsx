@@ -74,8 +74,8 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs text-[#77756E]">
               <li>
-                <Link to="/company" className="hover:text-[#B9684E] transition-colors">
-                  About STATIQDATA
+                <Link to="/nexdatalytix" className="hover:text-[#B9684E] font-medium text-[#20201E] transition-colors">
+                  About NexDatalytix
                 </Link>
               </li>
               <li>

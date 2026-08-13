@@ -45,7 +45,7 @@ export function SourceBadge({
               <a
                 href={source.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-text-muted hover:text-primary transition-colors"
               >
                 <ExternalLink className="h-3 w-3" />

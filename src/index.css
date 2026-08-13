@@ -56,6 +56,7 @@
   /* Typography */
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Radius System */
@@ -214,5 +215,8 @@
   .touch-scroller {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
+  }
+  .font-serif-editorial {
+    font-family: var(--font-serif), Georgia, serif;
   }
 }

@@ -16,6 +16,9 @@ export interface SuiteSummary {
   results: TestResult[];
 }
 
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
 
 export function getProjectRoot(): string {

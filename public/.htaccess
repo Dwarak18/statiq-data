@@ -1,0 +1,45 @@
+# ==============================================================================
+# Hostinger Apache / LiteSpeed Web Server Configuration & Security Hardening
+# Project: StatIQ One
+# ==============================================================================
+
+# Disable Directory Browsing / Indexing (Security Best Practice)
+Options -Indexes
+
+# Enable Rewrite Engine for Single Page Application (SPA) Routing
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not rewrite if requested file or directory exists on disk
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Route all other URLs to index.html for React Router client-side routing
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Block access to hidden files and directories (.git, .env, .htaccess, etc.)
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# HTTP Security Headers Hardening
+<IfModule mod_headers.c>
+  # Prevent MIME type sniffing
+  Header set X-Content-Type-Options "nosniff"
+
+  # Prevent Clickjacking via framing
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Control Referrer Information
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Restrict cross-site scripting (XSS) auditor behavior
+  Header set X-XSS-Protection "1; mode=block"
+
+  # Enforce HSTS (Strict-Transport-Security) for HTTPS
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
