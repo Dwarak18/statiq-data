@@ -34,6 +34,10 @@ npm run dev
 - `npm run lint` - run TypeScript checking with `tsc --noEmit`
 - `npm test` - run the E2E verification script
 - `npm run test:e2e` - same as `npm test`
+- `npm run security:check` - run complete security check (secrets, dependencies, SAST, hygiene)
+- `npm run security:check:fast` - run fast security check (ideal for pre-push hook)
+- `npm run pr:check` - run full PR check (lint + tests + security scan)
+- `npm run setup:hooks` - install Git pre-push hook to automatically run security checks before every push
 - `npm run clean` - remove `dist` and `server.js`
 
 ## Runtime Notes
