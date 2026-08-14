@@ -14,6 +14,7 @@ export default defineConfig(() => {
     // Use './' so asset paths work on Hostinger subdirectory deployments
     base: './',
     build: {
+      target: 'es2022',
       chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
