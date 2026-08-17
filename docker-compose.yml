@@ -1,0 +1,73 @@
+version: '3.8'
+
+# ==============================================================================
+# STATIQONE Docker Compose Configuration
+# Services:
+#   - postgres: PostgreSQL 16 Alpine with health check and persistent storage
+#   - backend: Node.js Express Backend on Port 4000
+# ==============================================================================
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: statiqone-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-statiquser}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-statiqpass_secure_2026}
+      POSTGRES_DB: ${DB_NAME:-statiqdb}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./authsystem/backend/migrations:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-statiquser} -d ${DB_NAME:-statiqdb}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - statiqone-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: statiqone-backend
+    restart: always
+    ports:
+      - "127.0.0.1:4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - DATABASE_URL=postgresql://${DB_USER:-statiquser}:${DB_PASSWORD:-statiqpass_secure_2026}@postgres:5432/${DB_NAME:-statiqdb}
+      - APP_ORIGIN=https://www.statiqone.com
+      - COOKIE_DOMAIN=.statiqone.com
+      - SESSION_SECRET=${SESSION_SECRET:-statiqone-session-secret-production-2026}
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET:-statiqone-access-jwt-secret-key-32bytes}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-statiqone-refresh-jwt-secret-key-32bytes}
+      - PII_ENCRYPTION_KEY=${PII_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      - PII_HMAC_KEY=${PII_HMAC_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+    env_file:
+      - ./authsystem/backend/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:4000/api/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - statiqone-net
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  statiqone-net:
+    driver: bridge
