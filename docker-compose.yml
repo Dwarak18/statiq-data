@@ -1,12 +1,3 @@
-version: '3.8'
-
-# ==============================================================================
-# STATIQONE Docker Compose Configuration
-# Services:
-#   - postgres: PostgreSQL 16 Alpine with health check and persistent storage
-#   - backend: Node.js Express Backend on Port 4000
-# ==============================================================================
-
 services:
   postgres:
     image: postgres:16-alpine
@@ -43,13 +34,13 @@ services:
       - NODE_ENV=production
       - PORT=4000
       - DATABASE_URL=postgresql://${DB_USER:-statiquser}:${DB_PASSWORD:-statiqpass_secure_2026}@postgres:5432/${DB_NAME:-statiqdb}
-      - APP_ORIGIN=https://www.statiqone.com
-      - COOKIE_DOMAIN=.statiqone.com
+      - APP_ORIGIN=http://localhost:3000
+      - COOKIE_DOMAIN=localhost
       - SESSION_SECRET=${SESSION_SECRET:-statiqone-session-secret-production-2026}
-      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET:-statiqone-access-jwt-secret-key-32bytes}
-      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-statiqone-refresh-jwt-secret-key-32bytes}
-      - PII_ENCRYPTION_KEY=${PII_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
-      - PII_HMAC_KEY=${PII_HMAC_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET:-af63bf307be0c3020580febb9f3d102ede5ab311f3bfe57f37c1c9f78d4521090a8d99bfc384a0e21e504b2b0fb4fe407dccb6d259ab33e85d5aa95b84702d9d}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-6e91df552dbabc6a207b0655ca5de0b1dbe8c2c6cc4f6174d2bf280ff12757c1a6b9360d04b7e9fb96f3d2104c207a56828b2f229992448602b7fd466da6143c}
+      - PII_ENCRYPTION_KEY=${PII_ENCRYPTION_KEY:-a0877a88d97bf5b20cd9191e6aa681b89b0ea930db08c59bb472594a81036bcb}
+      - PII_HMAC_KEY=${PII_HMAC_KEY:-81c1007d5cd5fdf2f009a147f1fc9ab70ba17f0c493b479b36fe4bdc33940061}
     env_file:
       - ./authsystem/backend/.env
     depends_on:
@@ -61,6 +52,20 @@ services:
       timeout: 5s
       retries: 3
       start_period: 15s
+    networks:
+      - statiqone-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: statiqone-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
     networks:
       - statiqone-net
 

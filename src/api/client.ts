@@ -426,3 +426,29 @@ export const api = {
 
   request,
 };
+
+export interface AnalyticsOverview {
+  success: boolean;
+  generatedAt: string;
+  marketStatus?: {
+    lastSyncTime: string;
+    cacheAgeSeconds: number;
+    refreshIntervalSeconds: number;
+  };
+  summary: {
+    trackedSymbols: number;
+    totalMarketCap: number;
+    averageChangePercent: number;
+    sectorCount: number;
+  };
+  sectors: Array<{ sector: string; count: number; exchanges: string[] }>;
+  movers: {
+    topGainers: Array<Record<string, any>>;
+    topLosers: Array<Record<string, any>>;
+    mostActive: Array<Record<string, any>>;
+  };
+}
+
+export const analyticsApi = {
+  overview: () => request<AnalyticsOverview>('/analytics/overview'),
+};

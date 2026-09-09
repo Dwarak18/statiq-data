@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Terminal, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
@@ -59,29 +59,19 @@ export function FinalCTA() {
                 <ArrowUpRight className="h-4 w-4 ml-1.5 text-[#B9684E]" />
               </Button>
 
-              <Button
-                variant="ghost"
-                size="lg"
-                onClick={() => navigate('/pricing')}
-                className="text-xs text-[#77756E] hover:text-[#20201E]"
-              >
-                Talk to Data Desk &rarr;
-              </Button>
+              <a href="/pricing" className="text-xs text-[#77756E] hover:text-[#20201E] hover:underline underline-offset-4">View pricing →</a>
             </div>
 
             {/* Trust indicators */}
-            <div className="pt-6 border-t border-[#E9E7E1] flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-[#77756E]">
+            <div className="pt-6 border-t border-[#E9E7E1] flex flex-wrap items-center justify-center gap-6 text-xs text-[#77756E]">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[#B9684E]" />
-                SEC EDGAR Audited Lineage
+                Source: SEC EDGAR
               </span>
               <span className="flex items-center gap-1.5">
-                <Terminal className="h-3.5 w-3.5 text-[#B9684E]" />
-                Instant API v4 Key Generation
+                REST API v4
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-3.5 w-3.5 text-[#B9684E]" />
-                24/7 Data Desk Support
+                Data desk by appointment
               </span>
             </div>
           </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
@@ -39,8 +38,8 @@ export function Methodology() {
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="px-3 py-1 bg-white border border-[#DEDDD7] text-[#20201E] font-bold rounded-[4px]">
-                  Grade AAA // 99.8% Accuracy
+                <span className="px-3 py-1 bg-white border border-[#DEDDD7] text-[#20201E] rounded-[4px]">
+                  Review status: sample
                 </span>
                 <span className="px-3 py-1 bg-[#EAD8D0] border border-[#B9684E]/20 text-[#B9684E] font-bold rounded-[4px]">
                   UTC ISO-8601
@@ -72,7 +71,6 @@ export function Methodology() {
               ].map((item) => (
                 <div key={item.num} className="space-y-3 p-5 rounded-[6px] bg-white border border-[#DEDDD7]">
                   <div className="flex items-center gap-2 font-mono text-xs text-[#B9684E] font-bold uppercase">
-                    <CheckCircle2 className="h-4 w-4" />
                     {item.num} / {item.label}
                   </div>
                   <h3 className="font-heading font-bold text-sm text-[#20201E]">
@@ -88,12 +86,11 @@ export function Methodology() {
             {/* Quality Score & Technical Disclosures */}
             <div className="border-t border-[#DEDDD7] pt-6 flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-xs text-[#77756E]">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-[#B9684E]" />
-                <span>Lineage Verification Standard: ISO-27001 Data Governance Protocol</span>
+                <span>Data lineage traced to primary source. Independent audit in progress.</span>
               </div>
 
               <div className="text-[11px] text-[#9A9890]">
-                [CONTENT PLACEHOLDER: Specific Security Compliance Audit ID &amp; SOC2 Type II Certification Number]
+              Compliance details are published when independently verified.
               </div>
             </div>
           </div>

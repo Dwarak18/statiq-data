@@ -13,6 +13,14 @@ export default defineConfig(() => {
     },
     // Use './' so asset paths work on Hostinger subdirectory deployments
     base: './',
+    esbuild: {
+      target: 'es2022',
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'es2022',
+      },
+    },
     build: {
       target: 'es2022',
       chunkSizeWarningLimit: 1500,

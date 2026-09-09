@@ -87,9 +87,6 @@ export function Capabilities() {
           <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
             <Reveal delay={0.1} yOffset={16}>
               <div className="p-6 rounded-[8px] bg-white border border-[#DEDDD7] space-y-4">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#B9684E] font-bold">
-                  Platform Standard
-                </span>
                 <h3 className="font-heading text-lg font-bold text-[#20201E]">
                   Editorial Numbered Architecture
                 </h3>
@@ -97,15 +94,7 @@ export function Capabilities() {
                   Click any capability to inspect underlying data pipelines, verified proof tags, and output formats. No generic feature cards.
                 </p>
                 <div className="pt-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-xs font-semibold border-[#DEDDD7] hover:border-[#B9684E]/50 text-[#20201E]"
-                    onClick={() => window.location.href = '/statistics'}
-                  >
-                    Browse Capabilities
-                    <ArrowRight className="h-3.5 w-3.5 ml-1.5 text-[#B9684E]" />
-                  </Button>
+                  <a href="/statistics" className="text-xs text-[#B9684E] hover:underline underline-offset-4">Browse all capabilities →</a>
                 </div>
               </div>
             </Reveal>
@@ -169,18 +158,11 @@ export function Capabilities() {
                           </p>
 
                           <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#E9E7E1]">
-                            <span className="inline-flex items-center px-2.5 py-1 rounded-[4px] text-[10px] font-mono tracking-wider uppercase bg-[#EAD8D0] text-[#B9684E] border border-[#B9684E]/20 font-bold">
-                              <Icon className="h-3 w-3 mr-1.5" />
+                            <span className="text-xs text-[#B9684E] font-medium">
                               {cap.proofTag}
                             </span>
 
-                            <div className="flex items-center gap-2 text-[10px] font-mono text-[#77756E]">
-                              {cap.metadata.map((m) => (
-                                <span key={m} className="bg-[#F7F6F2] px-2 py-0.5 rounded-[4px] border border-[#DEDDD7]">
-                                  {m}
-                                </span>
-                              ))}
-                            </div>
+                            <span className="text-[11px] text-[#77756E]">{cap.metadata.join(' · ')}</span>
                           </div>
                         </div>
                       </div>

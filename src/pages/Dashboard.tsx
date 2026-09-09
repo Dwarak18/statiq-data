@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/layout/Layout';
@@ -10,12 +11,31 @@ import { DownloadFormatsPreview, LockedPreview, PremiumBadge, UpgradeCard, Verif
 import { useToast } from '@/context/ToastContext';
 import { Download, Share2, Star, MapPin, Globe, Activity, ArrowUpRight, ArrowDownRight, BarChart2, Hash, FileText, Lock } from 'lucide-react';
 import ReactECharts from 'echarts-for-react';
+import { analyticsApi, AnalyticsOverview } from '@/api/client';
 
 export function Dashboard() {
+  const [analytics, setAnalytics] = useState<AnalyticsOverview | null>(null);
+  const [analyticsError, setAnalyticsError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const navigate = useNavigate();
   const { showToast } = useToast();
+
+  useEffect(() => {
+    let cancelled = false;
+
+    analyticsApi.overview()
+      .then((result) => {
+        if (!cancelled) setAnalytics(result);
+      })
+      .catch(() => {
+        if (!cancelled) setAnalyticsError('Live market summary is temporarily unavailable.');
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleSaveToggle = () => {
     const nextSaved = !isSaved;
@@ -35,68 +55,50 @@ export function Dashboard() {
     showToast('Excel export requires Premium. Preview rows remain available.', 'info');
   };
 
-  // Global tech adoption chart
-  const adoptionChart = {
-    tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-    grid: { left: '3%', right: '4%', bottom: '10%', top: '10%', containLabel: true },
-    xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024', '2025(E)'], boundaryGap: false },
+  const sectorChart = {
+    tooltip: { trigger: 'axis' },
+    grid: { left: '3%', right: '4%', bottom: '12%', top: '8%', containLabel: true },
+    xAxis: {
+      type: 'category',
+      data: analytics?.sectors.map((sector) => sector.sector) || [],
+      axisLabel: { interval: 0, rotate: 30, fontSize: 10 },
+    },
+    yAxis: { type: 'value', minInterval: 1 },
+    series: [{
+      name: 'Tracked symbols',
+      type: 'bar',
+      data: analytics?.sectors.map((sector) => sector.count) || [],
+      itemStyle: { color: '#C8A45D' },
+    }],
+  };
+
+  const moversOption = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    grid: { left: '3%', right: '4%', bottom: '12%', top: '8%', containLabel: true },
+    xAxis: { type: 'category', data: analytics?.movers.topGainers.slice(0, 6).map((quote) => quote.symbol) || [] },
     yAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
     series: [
       {
-        name: 'Enterprise AI',
-        type: 'line',
-        data: [15, 22, 34, 52, 71, 85],
-        smooth: true,
-        itemStyle: { color: '#C8A45D' },
-        lineStyle: { width: 3 },
-        areaStyle: {
-          color: {
-            type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-            colorStops: [{ offset: 0, color: 'rgba(200, 164, 93, 0.4)' }, { offset: 1, color: 'rgba(200, 164, 93, 0.0)' }]
-          }
-        }
+        name: 'Change',
+        type: 'bar',
+        data: analytics?.movers.topGainers.slice(0, 6).map((quote) => quote.changePercent) || [],
+        itemStyle: { color: '#657B6C' },
       },
-      {
-        name: 'Cloud Computing',
-        type: 'line',
-        data: [65, 72, 81, 89, 94, 96],
-        smooth: true,
-        itemStyle: { color: '#E3C47A' },
-        lineStyle: { width: 3, type: 'dashed' }
-      }
     ]
   };
 
-  const investmentOption = {
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['North America', 'Asia Pacific', 'Europe'], bottom: 0, textStyle: { fontSize: 10 } },
-    grid: { left: '3%', right: '4%', bottom: '15%', top: '10%', containLabel: true },
-    xAxis: { type: 'category', data: ['2021', '2022', '2023', '2024', '2025'] },
-    yAxis: { type: 'value', axisLabel: { formatter: '${value}B' } },
-    series: [
-      { name: 'North America', type: 'bar', stack: 'total', data: [85, 92, 105, 125, 145], itemStyle: { color: '#C8A45D' } },
-      { name: 'Asia Pacific', type: 'bar', stack: 'total', data: [45, 55, 68, 85, 110], itemStyle: { color: '#E3C47A' } },
-      { name: 'Europe', type: 'bar', stack: 'total', data: [35, 42, 50, 60, 75], itemStyle: { color: '#A3A3A3' } }
-    ]
-  };
-
-  const sentimentOption = {
-    tooltip: { trigger: 'item' },
-    legend: { show: false },
+  const activityOption = {
+    tooltip: { trigger: 'axis' },
+    grid: { left: '3%', right: '4%', bottom: '12%', top: '8%', containLabel: true },
+    xAxis: { type: 'category', data: analytics?.movers.mostActive.map((quote) => quote.symbol) || [] },
+    yAxis: { type: 'value', axisLabel: { formatter: (value: number) => `${(value / 1e6).toFixed(0)}M` } },
     series: [
       {
-        name: 'Consumer Sentiment',
-        type: 'pie',
-        radius: ['45%', '75%'],
-        avoidLabelOverlap: false,
-        itemStyle: { borderRadius: 4, borderColor: '#fff', borderWidth: 2 },
-        label: { show: true, position: 'inside', formatter: '{c}%', fontSize: 10, color: '#fff' },
-        data: [
-          { value: 55, name: 'Positive', itemStyle: { color: '#10B981' } },
-          { value: 25, name: 'Neutral', itemStyle: { color: '#9CA3AF' } },
-          { value: 20, name: 'Negative', itemStyle: { color: '#EF4444' } }
-        ]
-      }
+        name: 'Volume',
+        type: 'bar',
+        data: analytics?.movers.mostActive.map((quote) => quote.volume) || [],
+        itemStyle: { color: '#A3A3A3' },
+      },
     ]
   };
 
@@ -148,10 +150,30 @@ export function Dashboard() {
         {/* KPI Grid */}
         <div className="mb-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {[
-            { label: 'Global IT Spending 2025', value: '$5.2T', change: '+8.0%', up: true },
-            { label: 'AI Market Size 2025', value: '$420B', change: '+37.3%', up: true },
-            { label: 'Cloud Infrastructure', value: '$180B', change: '+18.5%', up: true },
-            { label: 'Hardware Sales', value: '$950B', change: '-1.2%', up: false }
+            {
+              label: 'Tracked symbols',
+              value: analytics ? analytics.summary.trackedSymbols.toLocaleString() : '—',
+              change: analytics ? `${analytics.summary.sectorCount} sectors` : 'Loading',
+              up: true,
+            },
+            {
+              label: 'Market value tracked',
+              value: analytics ? `$${(analytics.summary.totalMarketCap / 1e12).toFixed(2)}T` : '—',
+              change: analytics ? `${analytics.summary.averageChangePercent >= 0 ? '+' : ''}${analytics.summary.averageChangePercent}% avg` : 'Loading',
+              up: analytics ? analytics.summary.averageChangePercent >= 0 : true,
+            },
+            {
+              label: 'Top gainer',
+              value: analytics?.movers.topGainers[0]?.symbol || '—',
+              change: analytics?.movers.topGainers[0] ? `+${Number(analytics.movers.topGainers[0].changePercent || 0).toFixed(2)}%` : 'Loading',
+              up: true,
+            },
+            {
+              label: 'Top loser',
+              value: analytics?.movers.topLosers[0]?.symbol || '—',
+              change: analytics?.movers.topLosers[0] ? `${Number(analytics.movers.topLosers[0].changePercent || 0).toFixed(2)}%` : 'Loading',
+              up: false,
+            }
           ].map((kpi, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
               <Card className="shadow-none rounded-lg hover:border-primary/50 transition-colors cursor-default h-full">
@@ -169,21 +191,26 @@ export function Dashboard() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12">
+          {analyticsError && (
+            <div className="lg:col-span-12 border border-border bg-surface px-4 py-3 text-sm text-text-muted" role="status">
+              {analyticsError}
+            </div>
+          )}
           
           {/* Left Column (Main Charts) */}
           <div className="lg:col-span-8 space-y-6">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div>
-                  <CardTitle>Enterprise Tech Adoption Rates</CardTitle>
-                  <p className="text-xs text-text-muted mt-1">% of global enterprises utilizing technology in production</p>
+                  <CardTitle>Tracked symbols by sector</CardTitle>
+                  <p className="text-xs text-text-muted mt-1">Current symbol distribution from the market data cache</p>
                 </div>
                 <div className="flex gap-2">
                   <Badge variant="outline" className="cursor-pointer font-mono text-[10px]" onClick={() => showToast('Source verified: Gartner Tech Survey 2024', 'info')}>Source: Gartner</Badge>
                 </div>
               </CardHeader>
               <CardContent>
-                <ReactECharts option={adoptionChart} style={{ height: '320px' }} />
+                <ReactECharts option={sectorChart} style={{ height: '320px' }} />
                 <p className="mt-2 text-xs text-text-muted font-mono text-center">
                   Preview chart only. Premium unlocks daily data, zoom, company comparisons, raw downloads, and chart export.
                 </p>
@@ -195,30 +222,30 @@ export function Dashboard() {
               title="Unlock Advanced Dashboard Interactions"
               value="Enable monthly, quarterly, and daily views, zoom, compare companies, export charts, and download underlying records."
             >
-              <ReactECharts option={investmentOption} style={{ height: '230px' }} />
+              <ReactECharts option={moversOption} style={{ height: '230px' }} />
             </LockedPreview>
 
             <div className="grid gap-6 md:grid-cols-2">
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Venture Capital Investment by Region</CardTitle>
+                  <CardTitle className="text-sm">Top gainers</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ReactECharts option={investmentOption} style={{ height: '240px' }} />
+                  <ReactECharts option={moversOption} style={{ height: '240px' }} />
                 </CardContent>
               </Card>
               
               <Card>
-                <CardHeader className="py-3 pb-0"><CardTitle className="text-sm">Global Consumer Sentiment</CardTitle></CardHeader>
+                <CardHeader className="py-3 pb-0"><CardTitle className="text-sm">Most active by volume</CardTitle></CardHeader>
                 <CardContent className="py-0 mt-4 relative">
-                  <ReactECharts option={sentimentOption} style={{ height: '200px' }} />
+                  <ReactECharts option={activityOption} style={{ height: '200px' }} />
                 </CardContent>
               </Card>
             </div>
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm">Top Tech Companies by R&D Expenditure (2024)</CardTitle>
+                <CardTitle className="text-sm">Most active symbols</CardTitle>
                 <Button variant="outline" size="sm" onClick={handleExportExcel} className="h-7 text-[10px]">EXPORT EXCEL</Button>
               </CardHeader>
               <CardContent>
@@ -228,48 +255,32 @@ export function Dashboard() {
                       <tr>
                         <th className="px-4 py-2">Rank</th>
                         <th className="px-4 py-2">Company</th>
-                        <th className="px-4 py-2 text-right">R&D Spend (USD)</th>
-                        <th className="px-4 py-2 text-right">% of Revenue</th>
-                        <th className="px-4 py-2 text-right">YoY Growth</th>
+                        <th className="px-4 py-2 text-right">Price</th>
+                        <th className="px-4 py-2 text-right">Volume</th>
+                        <th className="px-4 py-2 text-right">Change</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {[
-                        { rank: 1, name: 'Amazon', spend: '$85.2B', revPct: '14.8%', growth: '+16.2%' },
-                        { rank: 2, name: 'Alphabet', spend: '$45.4B', revPct: '15.2%', growth: '+14.5%' },
-                        { rank: 3, name: 'Meta Platforms', spend: '$38.5B', revPct: '28.5%', growth: '+8.7%' },
-                        { rank: 4, name: 'Apple', spend: '$29.9B', revPct: '7.6%', growth: '+13.8%' },
-                        { rank: 5, name: 'Microsoft', spend: '$27.2B', revPct: '12.8%', growth: '+11.2%' },
-                      ].map((row) => (
+                      {(analytics?.movers.mostActive || []).map((row, index) => (
                         <tr
-                          key={row.rank}
+                          key={row.symbol}
                           onClick={() => navigate('/company')}
                           className="hover:bg-surface/80 cursor-pointer transition-colors"
                         >
-                          <td className="px-4 py-2 font-mono text-text-muted">{row.rank}</td>
-                          <td className="px-4 py-2 font-medium text-primary hover:underline">{row.name}</td>
-                          <td className="px-4 py-2 text-right font-mono">{row.spend}</td>
-                          <td className="px-4 py-2 text-right font-mono">{row.revPct}</td>
-                          <td className="px-4 py-2 text-right font-mono text-success">{row.growth}</td>
-                        </tr>
-                      ))}
-                      {[
-                        { rank: 6, name: 'NVIDIA', spend: '$12.9B', revPct: '18.1%', growth: '+31.0%' },
-                        { rank: 7, name: 'Samsung', spend: '$22.6B', revPct: '9.9%', growth: '+7.5%' }
-                      ].map((row) => (
-                        <tr key={row.rank} className="hover:bg-surface/80 transition-colors">
-                          <td className="px-4 py-2 font-mono text-text-muted blur-[2px] opacity-50">{row.rank}</td>
-                          <td className="px-4 py-2 font-medium text-primary blur-[2px] opacity-50">{row.name}</td>
-                          <td className="px-4 py-2 text-right font-mono blur-[2px] opacity-50">{row.spend}</td>
-                          <td className="px-4 py-2 text-right font-mono blur-[2px] opacity-50">{row.revPct}</td>
-                          <td className="px-4 py-2 text-right font-mono text-success blur-[2px] opacity-50">{row.growth}</td>
+                          <td className="px-4 py-2 font-mono text-text-muted">{index + 1}</td>
+                          <td className="px-4 py-2 font-medium text-primary hover:underline">{row.symbol}</td>
+                          <td className="px-4 py-2 text-right font-mono">{row.price}</td>
+                          <td className="px-4 py-2 text-right font-mono">{(Number(row.volume || 0) / 1e6).toFixed(1)}M</td>
+                          <td className={`px-4 py-2 text-right font-mono ${Number(row.changePercent || 0) >= 0 ? 'text-success' : 'text-danger'}`}>
+                            {Number(row.changePercent || 0).toFixed(2)}%
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
                 <div className="mt-3 rounded-lg border border-primary/20 bg-primary/5 p-3 text-xs text-text-muted">
-                  <span className="font-semibold text-primary">Premium unlocks:</span> top 500 companies, competitor benchmarking, valuation models, bulk downloads, and scheduled dashboard exports.
+                  <span className="font-semibold text-primary">Source:</span> cached market quotes with bounded results; detailed company views remain available from each symbol.
                 </div>
               </CardContent>
             </Card>
@@ -292,16 +303,18 @@ export function Dashboard() {
             <Card className="bg-primary/5 border-primary/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-primary flex items-center gap-2">
-                  <Activity className="h-4 w-4" /> AI Analyst Summary
+                  <Activity className="h-4 w-4" /> Market cache status
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs">
                 <p className="text-text-main mb-4 leading-relaxed font-sans">
-                  The technology sector is exhibiting strong capital concentration in AI infrastructure. While software revenue growth remains stable, capital expenditure (CapEx) for cloud providers is forecast to grow by 28% in 2025, diverging from historical norms.
+                  {analytics?.marketStatus
+                    ? `The dashboard is reading cached market data. The latest sync is ${analytics.marketStatus.cacheAgeSeconds} seconds old and refreshes every ${analytics.marketStatus.refreshIntervalSeconds} seconds.`
+                    : 'Loading the latest cached market data.'}
                 </p>
                 <LockedPreview className="min-h-[120px]" title="AI Deep Financial Insights" value="Unlock full AI analysis, forecast drivers, risk factors, and cited source extracts.">
                   <p className="text-text-main leading-relaxed font-sans p-4">
-                    Consumer sentiment, CAPEX sensitivity, public-company exposure, and regional scenario analysis with confidence intervals.
+                    Forecasts are intentionally not calculated in the request path. Scheduled forecasting jobs can consume this bounded dataset in a later worker process.
                   </p>
                 </LockedPreview>
               </CardContent>

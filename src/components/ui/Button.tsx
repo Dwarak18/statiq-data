@@ -35,23 +35,23 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     const effectiveSize = size === "default" ? "md" : size;
 
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B9684E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7F6F2]";
+      "inline-flex items-center justify-center font-medium transition-colors duration-200 cursor-pointer disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
     const variantStyles: Record<ButtonVariant, string> = {
-      primary: "bg-[#B9684E] text-white hover:bg-[#A85B43] font-semibold shadow-sm",
-      default: "bg-[#B9684E] text-white hover:bg-[#A85B43] font-semibold shadow-sm",
-      secondary: "bg-[#20201E] text-white border border-[#20201E] hover:bg-[#4F4E49]",
-      outline: "bg-transparent text-[#20201E] border border-[#DEDDD7] hover:bg-[#F7F6F2] hover:border-[#B9684E]/50",
-      ghost: "bg-transparent text-[#4F4E49] hover:bg-[#F7F6F2] hover:text-[#20201E]",
-      link: "bg-transparent text-[#B9684E] underline-offset-4 hover:underline p-0 h-auto",
+      primary: "bg-accent text-accent-contrast hover:bg-accent-hover font-semibold",
+      default: "bg-accent text-accent-contrast hover:bg-accent-hover font-semibold",
+      secondary: "bg-ink text-white border border-ink hover:bg-ink-soft",
+      outline: "bg-transparent text-ink border border-border hover:bg-surface hover:border-accent/50",
+      ghost: "bg-transparent text-ink-soft hover:text-ink",
+      link: "bg-transparent text-accent underline-offset-4 hover:underline p-0 h-auto",
     };
 
     const sizeStyles: Record<ButtonSize, string> = {
-      sm: "h-8 px-3 text-xs rounded-[6px] gap-1.5",
-      md: "h-10 px-4 text-sm rounded-[8px] gap-2",
-      lg: "h-12 px-6 text-base rounded-[8px] gap-2.5 font-semibold",
-      default: "h-10 px-4 text-sm rounded-[8px] gap-2",
-      icon: "h-10 w-10 p-0 rounded-[8px] items-center justify-center",
+      sm: "min-h-8 px-3 text-xs rounded-sm gap-1.5",
+      md: "min-h-10 px-4 text-sm rounded-md gap-2",
+      lg: "min-h-12 px-6 text-base rounded-md gap-2.5 font-semibold",
+      default: "min-h-10 px-4 text-sm rounded-md gap-2",
+      icon: "h-10 w-10 p-0 rounded-md items-center justify-center",
     };
 
     const combinedClassName = cn(

@@ -143,11 +143,6 @@ export function ProductSurface() {
     ],
   };
 
-  const tabClass = (key: DatasetKey) =>
-    activeKey === key
-      ? 'bg-[#20201E] text-white font-bold shadow-sm'
-      : 'bg-white text-[#77756E] border border-[#DEDDD7] hover:text-[#20201E] hover:border-[#B9684E]/40';
-
   return (
     <section id="product" className="border-b border-[#DEDDD7] bg-white py-16 sm:py-24">
       <Container>
@@ -166,7 +161,7 @@ export function ProductSurface() {
 
         {/* Dataset Tab Bar */}
         <Reveal delay={0.1} yOffset={16}>
-          <div className="flex flex-wrap items-center gap-2 mb-6 border-b border-[#E9E7E1] pb-4">
+          <div className="flex flex-wrap items-center gap-6 mb-6 border-b border-[#E9E7E1]">
             {(['aapl', 'fed', 'ai'] as DatasetKey[]).map((key) => {
               const labels: Record<DatasetKey, string> = {
                 aapl: 'Apple Inc. (AAPL)',
@@ -178,7 +173,11 @@ export function ProductSurface() {
                   key={key}
                   type="button"
                   onClick={() => { setActiveKey(key); setActiveMetricIdx(0); }}
-                  className={`px-4 py-2 rounded-[6px] font-mono text-xs uppercase tracking-wider transition-all cursor-pointer ${tabClass(key)}`}
+                  className={`relative pb-3 text-sm transition-colors cursor-pointer ${
+                    activeKey === key
+                      ? 'text-[#20201E] font-medium after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-[#B9684E]'
+                      : 'text-[#77756E] hover:text-[#20201E]'
+                  }`}
                 >
                   {labels[key]}
                 </button>
@@ -213,8 +212,8 @@ export function ProductSurface() {
                         onClick={() => setActiveMetricIdx(idx)}
                         className={`px-2.5 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
                           activeMetricIdx === idx
-                            ? 'bg-[#EAD8D0] text-[#B9684E] border border-[#B9684E]/40 font-semibold'
-                            : 'bg-white text-[#77756E] border border-[#DEDDD7] hover:text-[#20201E]'
+                            ? 'text-[#B9684E] font-medium border-b border-[#B9684E]'
+                            : 'text-[#77756E] hover:text-[#20201E]'
                         }`}
                       >
                         {s.name}
@@ -248,12 +247,10 @@ export function ProductSurface() {
             <Reveal delay={0.3} yOffset={16}>
               <div className="rounded-[8px] bg-[#FBFAF7] border border-[#DEDDD7] p-6 space-y-5">
                 <div className="flex items-center justify-between border-b border-[#E9E7E1] pb-3">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#B9684E] font-bold">
-                    Citation Metadata
+                  <span className="text-sm font-medium text-[#20201E]">
+                  Source details
                   </span>
-                  <span className="text-[10px] font-mono text-[#657B6C] bg-[#DCE1DC] border border-[#657B6C]/20 px-2 py-0.5 rounded-[4px]">
-                    VERIFIED
-                  </span>
+                  <span className="text-xs text-[#77756E]">Sample dataset</span>
                 </div>
 
                 <div className="space-y-3 text-xs">
@@ -272,9 +269,9 @@ export function ProductSurface() {
                   </div>
 
                   <div>
-                    <span className="text-[#77756E] font-mono block text-[11px]">Quality Rating</span>
+                    <span className="text-[#77756E] block text-[11px]">Data note</span>
                     <span className="text-[#20201E] font-mono font-bold block mt-0.5">
-                      {dataset.accuracyScore}
+                      Illustrative values; verify against the source before use.
                     </span>
                   </div>
 

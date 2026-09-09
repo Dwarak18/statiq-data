@@ -16,7 +16,7 @@ export const SectionLabel = React.forwardRef<HTMLDivElement, SectionLabelProps>(
       number,
       text,
       children,
-      showDot = true,
+      showDot = false,
       showLine = false,
       ...props
     },
@@ -35,21 +35,21 @@ export const SectionLabel = React.forwardRef<HTMLDivElement, SectionLabelProps>(
       <div
         ref={ref}
         className={cn(
-          "inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase text-[#C8A45D]",
+          "inline-flex items-center gap-2 text-xs font-medium tracking-wide text-muted",
           className
         )}
         {...props}
       >
         {showDot && (
           <span
-            className="inline-block w-1.5 h-1.5 rounded-full bg-[#C8A45D] shrink-0"
+            className="inline-block w-1.5 h-1.5 rounded-sm bg-accent shrink-0"
             aria-hidden="true"
           />
         )}
         <span>{content}</span>
         {showLine && (
           <span
-            className="inline-block w-8 h-px bg-[#C8A45D]/40 ml-1 shrink-0"
+            className="inline-block w-8 h-px bg-border ml-1 shrink-0"
             aria-hidden="true"
           />
         )}

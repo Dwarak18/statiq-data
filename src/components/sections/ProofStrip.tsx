@@ -1,5 +1,4 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { DataPoint } from '@/components/ui/DataPoint';
 import { Reveal } from '@/components/ui/Reveal';
@@ -21,16 +20,15 @@ export function ProofStrip() {
         <Reveal yOffset={12}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-[#E9E7E1] pb-4">
             <div>
-              <div className="flex items-center gap-2 font-mono text-xs text-[#B9684E] uppercase tracking-wider mb-1">
-                <ShieldCheck className="h-4 w-4" />
-                01 — INSTITUTIONAL TRUST &amp; SOURCE INTEGRITY
+              <div className="text-sm font-medium text-[#20201E] mb-1">
+                01 — Sources used in the platform
               </div>
               <p className="text-xs sm:text-sm text-[#77756E]">
-                Directly ingested from primary regulatory filings and sovereign institutions
+                Examples of public sources represented in the research workflows
               </p>
             </div>
             <span className="font-mono text-[11px] text-[#77756E] bg-[#F7F6F2] px-3 py-1 rounded-[4px] border border-[#DEDDD7] self-start sm:self-auto">
-              ISO-8601 UTC Sync
+              Source directory
             </span>
           </div>
         </Reveal>
@@ -84,15 +82,6 @@ export function ProofStrip() {
           </div>
         </Reveal>
 
-        {/* Content Integrity Placeholder */}
-        <Reveal delay={0.3} yOffset={10}>
-          <div className="mt-8 pt-4 border-t border-[#E9E7E1] flex items-center justify-between text-[11px] text-[#9A9890] font-mono">
-            <span>
-              [CONTENT PLACEHOLDER: Institutional Client Logos &amp; Partner Organizations]
-            </span>
-            <span>Zero Fabricated Client Claims</span>
-          </div>
-        </Reveal>
       </Container>
     </section>
   );
