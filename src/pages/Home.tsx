@@ -6,8 +6,13 @@ import { ProductSurface } from '@/components/sections/ProductSurface';
 import { Capabilities } from '@/components/sections/Capabilities';
 import { Methodology } from '@/components/sections/Methodology';
 import { FinalCTA } from '@/components/sections/FinalCTA';
+import { ProofStrip } from '@/components/sections/ProofStrip';
+import { IntelligenceFlow } from '@/components/sections/IntelligenceFlow';
+import { UseCases } from '@/components/sections/UseCases';
+import { Evidence } from '@/components/sections/Evidence';
+import { About } from '@/components/sections/About';
 
-const SECTION_IDS = ['product', 'capabilities', 'methodology'];
+const SECTION_IDS = ['product', 'capabilities', 'methodology', 'intelligence-flow', 'use-cases', 'evidence', 'about'];
 
 /**
  * Centralized scroll helper — measures the live header height at call time,
@@ -70,9 +75,14 @@ export function Home() {
 
       <main className="flex-1">
         <Hero />
+        <ProofStrip />
         <ProductSurface />
         <Capabilities />
+        <IntelligenceFlow />
+        <UseCases />
         <Methodology />
+        <Evidence />
+        <About />
         <FinalCTA />
       </main>
 

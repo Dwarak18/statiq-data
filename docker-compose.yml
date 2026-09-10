@@ -69,6 +69,14 @@ services:
     networks:
       - statiqone-net
 
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: statiqone-test
+    profiles:
+      - test
+
 volumes:
   pgdata:
     driver: local
