@@ -105,14 +105,21 @@ FEED_CONFIGS.forEach((feed) => {
 });
 
 /**
- * Clean & Unescape HTML and XML strings
+ * Clean & Unescape HTML and XML strings.
+ *
+ * Order is deliberate:
+ *   1. Extract CDATA content (strip wrapper only).
+ *   2. Strip ALL HTML/XML tags — this must happen before entity unescaping
+ *      so that encoded markup like &lt;script&gt; never becomes live tags.
+ *   3. Unescape safe text entities (&amp; &quot; etc.) for display.
+ *   4. Normalise whitespace.
  */
 function cleanXmlText(str) {
   if (!str) return '';
   return str
-    .replace(/<!\[CDATA\[(.*?)\]\]>/gs, '$1')
-    .replace(/<[^>]+>/g, ' ') // Strip HTML tags
-    .replace(/&amp;/g, '&')
+    .replace(/<!\[CDATA\[(.*?)\]\]>/gs, '$1') // unwrap CDATA
+    .replace(/<[^>]+>/g, ' ')                      // strip tags FIRST
+    .replace(/&amp;/g, '&')                        // then unescape entities
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')

@@ -612,9 +612,35 @@ async function processCcavenueCallback(encResp) {
 // ==============================================================================
 
 /**
+ * SSRF Guard: validate that the PayPal API base URL resolves to an official
+ * PayPal domain only. Rejects any env misconfiguration or injection attempt.
+ * Allowed hosts: api-m.paypal.com, api-m.sandbox.paypal.com
+ */
+const PAYPAL_ALLOWED_HOSTS = new Set([
+  'api-m.paypal.com',
+  'api-m.sandbox.paypal.com',
+]);
+
+function validatePaypalApiUrl(baseUrl) {
+  let parsed;
+  try {
+    parsed = new URL(baseUrl);
+  } catch {
+    throw new Error('SSRF guard: PAYPAL_API_URL is not a valid URL.');
+  }
+  if (parsed.protocol !== 'https:') {
+    throw new Error('SSRF guard: PAYPAL_API_URL must use HTTPS.');
+  }
+  if (!PAYPAL_ALLOWED_HOSTS.has(parsed.hostname)) {
+    throw new Error(`SSRF guard: PAYPAL_API_URL hostname "${parsed.hostname}" is not in the PayPal allowlist.`);
+  }
+}
+
+/**
  * Obtains OAuth 2.0 Bearer token for PayPal REST API v2.
  */
 async function getPaypalAccessToken() {
+  validatePaypalApiUrl(CONFIG.paypal.apiUrl);
   const auth = Buffer.from(`${CONFIG.paypal.clientId}:${CONFIG.paypal.clientSecret}`).toString('base64');
   try {
     const res = await fetch(`${CONFIG.paypal.apiUrl}/v1/oauth2/token`, {

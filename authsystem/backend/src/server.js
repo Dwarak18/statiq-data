@@ -54,7 +54,9 @@ app.use(
 
 app.use(
   cors({
-    origin: process.env.APP_ORIGIN || true,
+    // APP_ORIGIN must be explicitly set in production. The fallback is a
+    // specific local dev origin — never `true` (which would reflect any origin).
+    origin: process.env.APP_ORIGIN || 'http://localhost:3000',
     credentials: true, // required so the browser sends/receives the httpOnly auth cookies
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'X-CSRF-Token', 'Authorization'],
@@ -63,6 +65,9 @@ app.use(
 
 app.use(express.json({ limit: '32kb' })); // small body limit; auth payloads are tiny
 app.use(express.urlencoded({ extended: true, limit: '64kb' })); // support URL-encoded form POSTs (e.g. CCAvenue callback)
+
+// cookieParser is required before CSRF verification (csrf.js reads req.cookies).
+// verifyCsrf is mounted at /api below after payment callbacks are carved out.
 app.use(cookieParser());
 
 // Mount session middleware before passport to support state: true in OAuth 2.0 flows

@@ -143,6 +143,9 @@ export function verifyJwt(token, secret = process.env.JWT_ACCESS_SECRET) {
   const parts = String(token).split('.');
   if (parts.length !== 3) throw new Error('Invalid JWT format');
   const [header, body, signature] = parts;
+  // NOTE: HMAC-SHA256 is used here for JWT *signature verification* (a MAC),
+  // not for password storage. Password hashing uses argon2 in the auth service.
+  // lgtm[js/insufficient-password-hash]
   const expectedSig = crypto.createHmac('sha256', secret).update(`${header}.${body}`).digest('base64url');
   if (signature !== expectedSig) throw new Error('Invalid JWT signature');
   const payload = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));
