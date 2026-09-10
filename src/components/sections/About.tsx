@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, ShieldCheck, Layers, Quote } from 'lucide-react';
+import { Terminal, ShieldCheck, Layers } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
@@ -48,7 +48,6 @@ export function About() {
           <div className="lg:col-span-5">
             <Reveal delay={0.1} yOffset={16}>
               <div className="p-6 sm:p-8 rounded-[8px] bg-white border border-[#DEDDD7] space-y-4 relative overflow-hidden shadow-[0_1px_2px_rgba(20,20,18,0.04)]">
-                <Quote className="h-8 w-8 text-[#B9684E]/20" />
                 <p className="text-sm sm:text-base text-[#20201E] italic font-normal leading-relaxed">
                   "Modern financial research is plagued by fragmented data sources, unverified marketing metrics, and slow manual filings lookup. Our mission is to build the cleanest, fastest, and most verifiable intelligence surface for institutional analysis."
                 </p>
@@ -76,7 +75,6 @@ export function About() {
                     </span>
                     <div className="flex-1">
                       <h3 className="font-heading text-base font-bold text-[#20201E] flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-[#B9684E] shrink-0" />
                         {p.title}
                       </h3>
                       <p className="text-xs sm:text-sm text-[#4F4E49] mt-1 leading-relaxed">
@@ -94,7 +92,7 @@ export function About() {
         <Reveal delay={0.3} yOffset={10}>
           <div className="mt-10 pt-4 border-t border-[#E9E7E1] flex items-center justify-between text-[11px] text-[#9A9890] font-mono">
             <span>
-              [CONTENT PLACEHOLDER: Executive Leadership Team Bios &amp; High-Resolution Portraits]
+              Leadership and team details will be added when verified profiles are available.
             </span>
             <span>Zero Fabricated Employee Profiles</span>
           </div>

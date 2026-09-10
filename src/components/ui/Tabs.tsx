@@ -67,9 +67,9 @@ export function Tabs({
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        "flex flex-wrap items-center gap-1 border-b border-[#2A2A2A]",
+        "flex flex-wrap items-center gap-5 border-b border-border",
         variant === "pills" && "border-b-0 gap-2",
-        variant === "segment" && "border-b-0 p-1 bg-[#111111] rounded-[12px] border border-[#2A2A2A]",
+        variant === "segment" && "border-b-0 p-0 bg-transparent rounded-none border-0",
         className
       )}
     >
@@ -91,27 +91,27 @@ export function Tabs({
             onClick={() => !tab.disabled && onChange(tab.id)}
             onKeyDown={(e) => handleKeyDown(e, idx)}
             className={cn(
-              "relative inline-flex items-center gap-2 font-mono text-xs tracking-wide uppercase transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A45D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]",
+              "relative inline-flex items-center gap-2 text-sm transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
               size === "sm" && "px-3 py-1.5 text-[11px]",
               size === "md" && "px-4 py-2.5 text-xs",
               size === "lg" && "px-5 py-3 text-sm",
               variant === "underline" && [
                 "border-b-2 -mb-px",
                 isActive
-                  ? "border-[#C8A45D] text-[#C8A45D] font-semibold"
-                  : "border-transparent text-[#A1A1AA] hover:text-[#F4F4F5] hover:border-[#2A2A2A]",
+                  ? "border-accent text-ink font-medium"
+                  : "border-transparent text-muted hover:text-ink",
               ],
               variant === "pills" && [
-                "rounded-[6px] border",
+                "border-b-2 -mb-px",
                 isActive
-                  ? "bg-[#C8A45D] text-[#000000] border-[#C8A45D] font-semibold shadow-sm"
-                  : "bg-[#111111] text-[#A1A1AA] border-[#2A2A2A] hover:text-[#F4F4F5] hover:border-[#A1A1AA]/30",
+                  ? "border-accent text-ink font-medium"
+                  : "border-transparent text-muted hover:text-ink",
               ],
               variant === "segment" && [
-                "rounded-[6px]",
+                "border-b-2 -mb-px",
                 isActive
-                  ? "bg-[#C8A45D] text-[#000000] font-semibold shadow-sm"
-                  : "text-[#A1A1AA] hover:text-[#F4F4F5]",
+                  ? "border-accent text-ink font-medium"
+                  : "border-transparent text-muted hover:text-ink",
               ],
               tab.disabled && "opacity-40 cursor-not-allowed pointer-events-none"
             )}
@@ -121,10 +121,10 @@ export function Tabs({
             {tab.badge !== undefined && (
               <span
                 className={cn(
-                  "px-1.5 py-0.5 text-[10px] rounded-full font-mono",
+                  "px-1.5 py-0.5 text-[10px] rounded-sm",
                   isActive
-                    ? "bg-[#000000]/20 text-[#000000]"
-                    : "bg-[#171717] text-[#A1A1AA] border border-[#2A2A2A]"
+                    ? "bg-accent-soft text-accent"
+                    : "bg-surface-muted text-muted border border-border"
                 )}
               >
                 {tab.badge}

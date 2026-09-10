@@ -104,15 +104,6 @@ export function Evidence() {
           ))}
         </div>
 
-        {/* Content Integrity Placeholder */}
-        <Reveal delay={0.3} yOffset={10}>
-          <div className="mt-8 pt-4 border-t border-[#E9E7E1] flex items-center justify-between text-[11px] text-[#9A9890] font-mono">
-            <span>
-              [CONTENT PLACEHOLDER: Quantified Enterprise Case Study Organization &amp; Verified Portfolio Impact]
-            </span>
-            <span>Audited Institutional Workflows Only</span>
-          </div>
-        </Reveal>
       </Container>
     </section>
   );

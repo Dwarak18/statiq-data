@@ -152,9 +152,7 @@ export function UseCases() {
               <div className="space-y-2.5 pt-2">
                 {currentPathway.benefits.map((benefit) => (
                   <div key={benefit} className="flex items-start gap-3 text-xs sm:text-sm text-[#20201E]">
-                    <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EAD8D0] text-[#B9684E] mt-0.5">
-                      <Check className="h-3.5 w-3.5" />
-                    </div>
+                    <span className="text-[#B9684E] font-semibold shrink-0 leading-5">—</span>
                     <span>{benefit}</span>
                   </div>
                 ))}
@@ -189,20 +187,12 @@ export function UseCases() {
                 </div>
 
                 <div>
-                  <span className="text-[11px] font-mono text-[#77756E] uppercase tracking-wider block mb-2">
-                    Delivered Output Formats:
-                  </span>
-                  <div className="space-y-1.5">
+                  <span className="text-xs text-[#77756E] font-medium block mb-2">Output formats</span>
+                  <ul className="space-y-1.5 pt-1">
                     {currentPathway.outputTypes.map((out) => (
-                      <div
-                        key={out}
-                        className="flex items-center text-xs font-mono text-[#20201E] p-2 bg-white rounded-[4px] border border-[#DEDDD7]"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#B9684E] mr-2 shrink-0" />
-                        {out}
-                      </div>
+                      <li key={out} className="text-xs text-[#4F4E49] flex items-center gap-1.5"><span className="text-[#B9684E]">·</span>{out}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>

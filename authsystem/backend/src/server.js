@@ -29,6 +29,7 @@ const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
 const paymentRoutes = require('./routes/payments');
 const stockRoutes = require('./routes/stocks');
+const analyticsRoutes = require('./routes/analytics');
 const newsRoutes = require('./routes/news');
 const reportRoutes = require('./routes/reports');
 const healthRoutes = require('./routes/health');
@@ -109,6 +110,7 @@ app.get('/api/csrf-token', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/stocks', stockRoutes);
+app.use('/api/analytics', analyticsRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/reports', reportRoutes);
 

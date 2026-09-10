@@ -15,8 +15,6 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Product', href: 'product', isHash: true },
   { label: 'Capabilities', href: 'capabilities', isHash: true },
   { label: 'Methodology', href: 'methodology', isHash: true },
-  { label: 'Use Cases', href: 'use-cases', isHash: true },
-  { label: 'About', href: 'about', isHash: true },
   { label: 'Pricing', href: '/pricing', isHash: false },
 ];
 
