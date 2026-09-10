@@ -6,5 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
-.agents/
+# .agents/ intentionally tracked — project skills shared via version control
 ORIGINAL_REQUEST.md
