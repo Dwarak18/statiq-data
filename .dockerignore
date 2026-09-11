@@ -1,6 +1,12 @@
 node_modules
+authsystem/backend/node_modules
 dist
 .git
+.github
 .agents
-authsystem/backend/node_modules
+.gemini
+tests
+coverage
 *.log
+.DS_Store
+Thumbs.db

@@ -23,24 +23,27 @@ const WORKFLOW_EXAMPLES = [
     workflow:
       'Segment revenue tracking and 10-K balance sheet line-item extraction across Apple (AAPL), Microsoft (MSFT), and NVIDIA (NVDA) filings.',
     outcome:
-      'Real-time cap-ex to segment revenue ratio benchmarks generated automatically with primary SEC EDGAR accession number citations.',
+      'Cap-ex to segment revenue ratio benchmarks generated automatically with primary SEC EDGAR accession number citations.',
     tickers: ['AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN'],
   },
 ];
 
 export function Evidence() {
   return (
-    <section className="border-b border-[#DEDDD7] bg-white py-16 sm:py-24">
+    <section className="border-b border-[#DEDDD7] bg-white py-16 sm:py-24" data-editorial-row="evidence-workflows">
       <Container>
-        {/* Header */}
+        {/* Editorial Workflow Header */}
         <Reveal yOffset={12}>
           <div className="mb-12 max-w-3xl">
-            <SectionLabel number="07" text="PLATFORM APPLICATION" />
+            <SectionLabel text="Research workflows" />
             <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#20201E] mt-3">
-              How Institutional Research Teams Use StatIQ One
+              How quantitative teams deploy{' '}
+              <span className="font-serif italic font-normal text-[#B9684E]">
+                StatIQ One
+              </span>
             </h2>
             <p className="text-sm sm:text-base text-[#4F4E49] mt-3 leading-relaxed">
-              Real quantitative workflows demonstrating primary source ingestion, automated alignment, and decision-grade output delivery.
+              Real institutional workflows demonstrating primary source ingestion, automated series alignment, and decision-grade output delivery.
             </p>
           </div>
         </Reveal>
@@ -52,45 +55,45 @@ export function Evidence() {
               <div className="p-6 sm:p-8 rounded-[8px] bg-[#FBFAF7] border border-[#DEDDD7] hover:border-[#B9684E]/40 transition-all flex flex-col justify-between h-full space-y-6">
                 <div>
                   <div className="flex items-center justify-between gap-2 border-b border-[#E9E7E1] pb-3 mb-4">
-                    <span className="font-mono text-xs font-bold text-[#B9684E] uppercase tracking-wider">
-                      Workflow Spec 0{idx + 1}
-                    </span>
-                    <span className="text-[10px] font-mono text-[#77756E] bg-white px-2 py-0.5 rounded-[4px] border border-[#DEDDD7]">
+                    <span className="text-xs font-semibold text-[#B9684E]">
                       {item.sector}
+                    </span>
+                    <span className="text-[11px] font-mono text-[#77756E]">
+                      Case {String(idx + 1).padStart(2, '0')}
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-xl font-bold text-[#20201E] mb-4">
+                  <h3 className="font-heading text-xl font-bold text-[#20201E] mb-5">
                     {item.title}
                   </h3>
 
-                  {/* 3-Step Monospace Process Block */}
-                  <div className="space-y-3 text-xs">
-                    <div className="p-3.5 rounded-[6px] bg-white border border-[#DEDDD7] space-y-1">
-                      <span className="font-mono text-[10px] uppercase text-[#77756E] block">
-                        [01] Research Challenge
+                  {/* Editorial Stepped Timeline Flow */}
+                  <div className="space-y-4 border-l-2 border-[#E9E7E1] pl-4">
+                    <div className="space-y-1">
+                      <span className="text-[11px] font-semibold text-[#77756E] block">
+                        Challenge
                       </span>
-                      <p className="text-[#4F4E49] leading-relaxed">{item.challenge}</p>
+                      <p className="text-xs sm:text-sm text-[#4F4E49] leading-relaxed">{item.challenge}</p>
                     </div>
 
-                    <div className="p-3.5 rounded-[6px] bg-white border border-[#DEDDD7] space-y-1">
-                      <span className="font-mono text-[10px] uppercase text-[#B9684E] block">
-                        [02] StatIQ One Workflow
+                    <div className="space-y-1">
+                      <span className="text-[11px] font-semibold text-[#B9684E] block">
+                        Platform Workflow
                       </span>
-                      <p className="text-[#4F4E49] leading-relaxed">{item.workflow}</p>
+                      <p className="text-xs sm:text-sm text-[#4F4E49] leading-relaxed">{item.workflow}</p>
                     </div>
 
-                    <div className="p-3.5 rounded-[6px] bg-white border border-[#B9684E]/25 space-y-1">
-                      <span className="font-mono text-[10px] uppercase text-[#657B6C] block font-bold">
-                        [03] Quantified Outcome
+                    <div className="space-y-1 bg-white p-3.5 rounded-[6px] border border-[#E9E7E1]">
+                      <span className="text-[11px] font-semibold text-[#657B6C] block">
+                        Quantified Outcome
                       </span>
-                      <p className="text-[#20201E] font-medium leading-relaxed">{item.outcome}</p>
+                      <p className="text-xs sm:text-sm text-[#20201E] font-medium leading-relaxed">{item.outcome}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="border-t border-[#E9E7E1] pt-4 flex items-center justify-between text-[11px] font-mono text-[#77756E]">
-                  <span>Active Series:</span>
+                  <span>Active series:</span>
                   <div className="flex flex-wrap gap-1.5">
                     {item.tickers.map((t) => (
                       <span key={t} className="bg-white px-2 py-0.5 rounded-[4px] border border-[#DEDDD7]">

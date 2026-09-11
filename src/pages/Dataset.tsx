@@ -56,10 +56,10 @@ export function Dataset() {
     xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024', '2025*'] },
     yAxis: { type: 'value', axisLabel: { formatter: '{value}B' } },
     series: [
-      { name: 'North America', type: 'bar', stack: 'total', data: [45, 52, 68, 85, 105, 130], itemStyle: { color: '#C8A45D' } },
-      { name: 'Europe', type: 'bar', stack: 'total', data: [30, 35, 45, 55, 70, 85], itemStyle: { color: '#E3C47A' } },
-      { name: 'Asia-Pacific', type: 'bar', stack: 'total', data: [25, 32, 48, 70, 95, 125], itemStyle: { color: '#B38F48' } },
-      { name: 'Rest of World', type: 'bar', stack: 'total', data: [10, 12, 15, 20, 25, 32], itemStyle: { color: '#A3A3A3' } }
+      { name: 'North America', type: 'bar', stack: 'total', data: [45, 52, 68, 85, 105, 130], itemStyle: { color: '#B9684E' } },
+      { name: 'Europe', type: 'bar', stack: 'total', data: [30, 35, 45, 55, 70, 85], itemStyle: { color: '#657B6C' } },
+      { name: 'Asia-Pacific', type: 'bar', stack: 'total', data: [25, 32, 48, 70, 95, 125], itemStyle: { color: '#996B4A' } },
+      { name: 'Rest of World', type: 'bar', stack: 'total', data: [10, 12, 15, 20, 25, 32], itemStyle: { color: '#DEDDD7' } }
     ]
   };
 

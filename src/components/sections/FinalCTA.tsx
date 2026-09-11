@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
-import { SectionLabel } from '@/components/ui/SectionLabel';
 import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 
@@ -24,17 +23,16 @@ export function FinalCTA() {
       <Container className="relative z-10">
         <Reveal yOffset={16}>
           <div className="p-8 sm:p-12 lg:p-16 rounded-[8px] bg-[#FBFAF7] border border-[#DEDDD7] text-center space-y-6 max-w-4xl mx-auto shadow-[0_8px_30px_rgba(20,20,18,0.06)]">
-            {/* Accent rule at top */}
-            <div className="flex justify-center">
-              <SectionLabel number="09" text="INSTITUTIONAL ACCESS" />
-            </div>
-
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#20201E]">
-              Accelerate Your Quantitative Research Workflow.
+              Financial data that traces{' '}
+              <span className="font-serif italic font-normal text-[#B9684E]">
+                back to the source
+              </span>
+              .
             </h2>
 
             <p className="text-sm sm:text-base text-[#4F4E49] max-w-2xl mx-auto leading-relaxed">
-              Gain unrestricted access to 3.5 million+ audited series, SEC EDGAR parsers, macroeconomic forecasts, and developer-grade API endpoints.
+              Gain access to verified series, SEC EDGAR parsers, macroeconomic forecasts, and API endpoints.
             </p>
 
             {/* Action CTAs */}
@@ -45,7 +43,7 @@ export function FinalCTA() {
                 onClick={() => navigate('/signup')}
                 className="font-bold"
               >
-                Request Institutional Access
+                Talk to our team
                 <ArrowRight className="h-4 w-4 ml-1.5" />
               </Button>
 
@@ -55,7 +53,7 @@ export function FinalCTA() {
                 onClick={() => navigate('/search')}
                 className="font-semibold border-[#DEDDD7] text-[#20201E] hover:border-[#B9684E]/50"
               >
-                Explore Public Datasets
+                Explore public datasets
                 <ArrowUpRight className="h-4 w-4 ml-1.5 text-[#B9684E]" />
               </Button>
 

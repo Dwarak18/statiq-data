@@ -14,7 +14,15 @@ import { Search as SearchIcon, BarChart2, FileText, Building2, Globe, Hash, Spar
 import ReactECharts from 'echarts-for-react';
 import { motion } from 'motion/react';
 
-export function Search() {
+interface SearchProps {
+  title?: string;
+  subtitle?: string;
+}
+
+export function Search({
+  title = 'Ask anything.',
+  subtitle = 'Use natural language to query 5M+ datasets, reports, and company profiles.'
+}: SearchProps = {}) {
   const [searchParams] = useSearchParams();
   const initialQ = searchParams.get('q') || "Compare India and China population growth since 2010";
   const [query, setQuery] = useState(initialQ);
@@ -69,7 +77,7 @@ export function Search() {
     xAxis: { type: 'category', data: ['2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024'] },
     yAxis: { type: 'value', min: 1.3, axisLabel: { formatter: '{value}B' } },
     series: [
-      { name: 'India', type: 'line', data: [1.23, 1.26, 1.30, 1.33, 1.36, 1.39, 1.41, 1.44], itemStyle: { color: '#C8A45D' }, smooth: true, lineStyle: { width: 3 } },
+      { name: 'India', type: 'line', data: [1.23, 1.26, 1.30, 1.33, 1.36, 1.39, 1.41, 1.44], itemStyle: { color: '#B9684E' }, smooth: true, lineStyle: { width: 3 } },
       { name: 'China', type: 'line', data: [1.34, 1.35, 1.37, 1.38, 1.40, 1.41, 1.41, 1.41], itemStyle: { color: '#EF4444' }, smooth: true, lineStyle: { width: 3 } }
     ]
   };
@@ -91,8 +99,16 @@ export function Search() {
         
         <div className="container mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold font-heading mb-3">Ask anything.</h1>
-            <p className="text-text-muted text-base sm:text-lg">Use natural language to query 5M+ datasets, reports, and company profiles.</p>
+            <h1 className="text-3xl sm:text-4xl font-semibold font-heading tracking-tight mb-3 text-text-main">
+              {title === 'Ask anything.' ? (
+                <>
+                  Ask <span className="font-serif italic font-normal text-primary">anything.</span>
+                </>
+              ) : (
+                title
+              )}
+            </h1>
+            <p className="text-text-muted text-base sm:text-lg">{subtitle}</p>
           </div>
 
           <form onSubmit={handleSearchSubmit} className="mx-auto flex flex-col sm:flex-row max-w-4xl items-stretch sm:items-center rounded-xl bg-background p-2 sm:p-1.5 shadow-lg border border-primary/20 ring-1 ring-primary/10 transition-shadow hover:shadow-xl focus-within:ring-primary/30 gap-2 sm:gap-0">

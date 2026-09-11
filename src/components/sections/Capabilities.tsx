@@ -18,10 +18,10 @@ interface CapabilityItem {
 const CAPABILITIES: CapabilityItem[] = [
   {
     number: '01',
-    title: 'Primary Source Lineage & SEC Audit Trail',
+    title: 'Primary Source Lineage & SEC Filings',
     summary: 'Every statistic links directly to its underlying SEC EDGAR filing, Fed release, or World Bank dataset.',
     details:
-      'Eliminate unverified third-party estimates. StatIQ One preserves full cryptographic lineage for every time series point, enabling quantitative teams to inspect the exact line-item table, page number, and regulatory accession ID.',
+      'Eliminate unverified third-party estimates. StatIQ One preserves direct source lineage for every time series point, enabling quantitative teams to inspect the exact line-item table, page number, and regulatory accession ID.',
     proofTag: 'SEC 10-K & 10-Q Raw Table Citation Parser',
     icon: ShieldCheck,
     metadata: ['SEC EDGAR Form 10-K/10-Q', 'FRED St. Louis Series', 'World Bank WDI Datasets'],
@@ -31,7 +31,7 @@ const CAPABILITIES: CapabilityItem[] = [
     title: 'Multi-Format Data Export & Pipeline Sync',
     summary: 'Export clean datasets into Excel, CSV, JSON, Parquet, or connect directly via REST & WebSocket APIs.',
     details:
-      'Seamlessly feed structured data into Python, R, Tableau, or proprietary portfolio management systems. High-throughput WebSocket feeds provide real-time updates as soon as regulatory filings hit EDGAR.',
+      'Seamlessly feed structured data into Python, R, Tableau, or proprietary portfolio management systems. High-throughput WebSocket feeds provide updates as soon as regulatory filings are published.',
     proofTag: 'Parquet / Excel / REST API v4 Sync',
     icon: Database,
     metadata: ['Apache Parquet (.parquet)', 'Excel (.xlsx) / CSV / JSON', 'REST & WebSocket v4 API'],
@@ -71,12 +71,12 @@ export function Capabilities() {
         {/* Header */}
         <Reveal yOffset={12}>
           <div className="mb-12 max-w-3xl">
-            <SectionLabel number="04" text="CORE CAPABILITIES" />
+            <SectionLabel text="Capabilities" />
             <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#20201E] mt-3">
               Engineered for Rigorous Quantitative Research
             </h2>
             <p className="text-sm sm:text-base text-[#4F4E49] mt-3 leading-relaxed">
-              Designed for institutional analysts who demand verified primary sources, zero visual noise, and developer-grade throughput.
+              Designed for institutional analysts who demand verified primary sources and structured data exports.
             </p>
           </div>
         </Reveal>
@@ -87,11 +87,8 @@ export function Capabilities() {
           <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
             <Reveal delay={0.1} yOffset={16}>
               <div className="p-6 rounded-[8px] bg-white border border-[#DEDDD7] space-y-4">
-                <h3 className="font-heading text-lg font-bold text-[#20201E]">
-                  Editorial Numbered Architecture
-                </h3>
-                <p className="text-xs text-[#77756E] leading-relaxed">
-                  Click any capability to inspect underlying data pipelines, verified proof tags, and output formats. No generic feature cards.
+                <p className="text-sm text-[#4F4E49] leading-relaxed">
+                  Select any capability to inspect underlying data pipelines, verified sources, and output formats.
                 </p>
                 <div className="pt-2">
                   <a href="/statistics" className="text-xs text-[#B9684E] hover:underline underline-offset-4">Browse all capabilities →</a>
@@ -125,7 +122,7 @@ export function Capabilities() {
                     >
                       <div className="flex items-start gap-4">
                         <span className="font-mono text-base sm:text-lg font-bold text-[#B9684E] shrink-0 mt-0.5">
-                          {cap.number} —
+                          {cap.number}
                         </span>
                         <div>
                           <h3 className="font-heading text-base sm:text-lg font-bold text-[#20201E] group-hover:text-[#B9684E] transition-colors">

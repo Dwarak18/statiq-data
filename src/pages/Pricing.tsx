@@ -54,7 +54,7 @@ const PRICING_TIERS: PricingTier[] = [
   {
     id: 'professional',
     name: 'Professional Analyst',
-    badge: 'MOST POPULAR',
+    badge: 'Most popular',
     isPopular: true,
     description: 'Complete data suite for buy-side analysts, equity researchers, and corporate strategy teams.',
     monthlyPrice: 249,
@@ -64,7 +64,7 @@ const PRICING_TIERS: PricingTier[] = [
     features: [
       'Unrestricted access to all 3.5M+ series',
       'Full SEC EDGAR, IMF, Fed, Eurostat audit trails',
-      'Raycast-style Spotlight & AI natural language search',
+      'Search across filings, macro series, and company data',
       'Unlimited Excel, CSV, JSON, and PDF report exports',
       'Custom workspace dashboards & watchlist alerts',
       'Priority 24/7 technical support & data requests'
@@ -75,7 +75,7 @@ const PRICING_TIERS: PricingTier[] = [
   {
     id: 'institutional',
     name: 'Institutional Enterprise',
-    badge: 'UNLIMITED ACCESS',
+    badge: 'Unlimited access',
     description: 'Dedicated infrastructure, custom API limits, and tailored data pipelines for funds & banks.',
     monthlyPrice: 899,
     annualPrice: 749,
@@ -89,7 +89,7 @@ const PRICING_TIERS: PricingTier[] = [
       'Custom proprietary dataset ingestion',
       '99.99% Guaranteed SLA with SLA financial backing'
     ],
-    ctaText: 'Contact Institutional Team',
+    ctaText: 'Talk to our team',
     ctaVariant: 'outline'
   }
 ];
@@ -144,16 +144,20 @@ export function Pricing() {
     <Layout>
       {/* Header Section */}
       <section className="relative overflow-hidden bg-background border-b border-border px-4 py-16 sm:py-20 lg:px-8 text-center">
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#2A2A2A_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#DEDDD7_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
         
         <div className="container relative z-10 mx-auto max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-card text-xs font-mono text-primary font-semibold mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-card text-xs text-primary font-medium mb-6">
             <InstitutionalEmblemIcon className="h-4 w-4" />
-            TRANSPARENT INSTITUTIONAL PRICING
+            Transparent institutional pricing
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-main leading-tight mb-6">
-            Institutional Data Plans for <span className="text-primary underline decoration-primary/40 underline-offset-8">Every Enterprise</span>.
+            Institutional plans for{' '}
+            <span className="font-serif italic font-normal text-primary">
+              every research team
+            </span>
+            .
           </h1>
 
           <p className="text-base sm:text-lg text-text-muted max-w-2xl mx-auto font-normal leading-relaxed mb-10">
@@ -177,7 +181,7 @@ export function Pricing() {
               }`}
             >
               <span>Annual Billing</span>
-              <span className="text-[10px] uppercase font-mono px-1.5 py-0.2 rounded bg-black/20 text-black">Save 20%</span>
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-black/20 text-black">Save 20%</span>
             </button>
           </div>
         </div>

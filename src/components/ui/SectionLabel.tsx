@@ -22,14 +22,7 @@ export const SectionLabel = React.forwardRef<HTMLDivElement, SectionLabelProps>(
     },
     ref
   ) => {
-    let content = children;
-    if (!content) {
-      if (number && text) {
-        content = `${number} — ${text}`;
-      } else {
-        content = number || text || "";
-      }
-    }
+    let content = children || text || "";
 
     return (
       <div

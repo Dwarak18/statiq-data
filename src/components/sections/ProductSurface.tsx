@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReactECharts from 'echarts-for-react';
 import {
   ShieldCheck,
@@ -31,13 +32,12 @@ interface DatasetData {
     data: number[];
     unit: string;
   }[];
-  accuracyScore: string;
 }
 
 const DATASETS: Record<DatasetKey, DatasetData> = {
   aapl: {
     title: 'Apple Inc. (AAPL) SEC 10-K Fundamentals',
-    subtitle: 'Audited enterprise revenue, net income, and operating margin (FY2020–FY2024)',
+    subtitle: 'Enterprise revenue, net income, and operating margin (FY2020–FY2024)',
     citation: 'SEC EDGAR Annual Report Form 10-K CIK 0000320193',
     cik: '0000320193',
     categories: ['FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024'],
@@ -46,7 +46,6 @@ const DATASETS: Record<DatasetKey, DatasetData> = {
       { name: 'Net Income ($B)', data: [57.41, 94.68, 99.80, 96.99, 93.74], unit: '$B' },
       { name: 'Operating Margin (%)', data: [24.1, 29.8, 30.3, 29.8, 31.5], unit: '%' },
     ],
-    accuracyScore: 'Grade AAA // 99.8%',
   },
   fed: {
     title: 'US Federal Reserve Target Interest Rate Outlook',
@@ -59,12 +58,11 @@ const DATASETS: Record<DatasetKey, DatasetData> = {
       { name: 'US 10Y Yield (%)', data: [0.89, 1.45, 3.88, 3.88, 4.21, 4.05, 3.85], unit: '%' },
       { name: 'Core PCE Inflation (%)', data: [1.4, 4.8, 4.7, 2.9, 2.7, 2.3, 2.0], unit: '%' },
     ],
-    accuracyScore: 'Grade AAA // 99.9%',
   },
   ai: {
     title: 'Global Enterprise AI Infrastructure Spend',
     subtitle: 'Capital expenditure breakdown across cloud & semiconductor hardware (2020–2026)',
-    citation: 'Gartner & IDC Audited Market Reports + SEC 10-K CapEx Notes',
+    citation: 'Industry Market Reports + SEC 10-K CapEx Notes',
     cik: 'IDC-AI-INFRA-2026',
     categories: ['2020', '2021', '2022', '2023', '2024', '2025*', '2026*'],
     series: [
@@ -72,13 +70,13 @@ const DATASETS: Record<DatasetKey, DatasetData> = {
       { name: 'Asia-Pacific ($B)', data: [8.1, 12.5, 24.8, 48.0, 75.0, 110.0, 145.0], unit: '$B' },
       { name: 'Europe ($B)', data: [5.2, 8.0, 15.5, 28.2, 45.0, 65.0, 88.0], unit: '$B' },
     ],
-    accuracyScore: 'Grade AAA // 99.7%',
   },
 };
 
 export function ProductSurface() {
   const [activeKey, setActiveKey] = useState<DatasetKey>('aapl');
   const [activeMetricIdx, setActiveMetricIdx] = useState(0);
+  const navigate = useNavigate();
 
   const dataset = DATASETS[activeKey];
   const activeSeries = dataset.series[activeMetricIdx] || dataset.series[0];
@@ -149,12 +147,15 @@ export function ProductSurface() {
         {/* Header */}
         <Reveal yOffset={12}>
           <div className="mb-10 max-w-3xl">
-            <SectionLabel number="03" text="PRODUCT SURFACE" />
+            <SectionLabel text="The workspace" />
             <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#20201E] mt-3">
-              Interactive Data Canvas &amp; Financial Dossier Engine
+              Interactive Data Canvas &amp;{' '}
+              <span className="font-serif italic font-normal text-[#B9684E]">
+                Dossier Engine
+              </span>
             </h2>
             <p className="text-sm sm:text-base text-[#4F4E49] mt-3 leading-relaxed">
-              Explore live financial series, macroeconomic forecasts, and equity fundamentals with primary SEC EDGAR audit lineage.
+              Explore live financial series, macroeconomic forecasts, and equity fundamentals with primary SEC EDGAR regulatory lineage.
             </p>
           </div>
         </Reveal>
@@ -198,7 +199,7 @@ export function ProductSurface() {
                     <h3 className="font-heading font-bold text-base text-[#20201E]">
                       {dataset.title}
                     </h3>
-                    <p className="text-xs text-[#77756E] font-mono mt-0.5">
+                    <p className="text-xs text-[#77756E] mt-0.5">
                       {dataset.subtitle}
                     </p>
                   </div>
@@ -230,12 +231,11 @@ export function ProductSurface() {
                     notMerge={true}
                     lazyUpdate={true}
                   />
-                  <div className="mt-4 pt-3 border-t border-[#E9E7E1] flex items-center justify-between text-[11px] font-mono text-[#77756E]">
+                  <div className="mt-4 pt-3 border-t border-[#E9E7E1] flex items-center justify-between text-[11px] text-[#77756E]">
                     <span className="flex items-center gap-1.5">
                       <ShieldCheck className="h-3.5 w-3.5 text-[#B9684E]" />
-                      Lineage Audit: Primary Regulatory Sources
+                      Primary regulatory sources
                     </span>
-                    <span>Interactive Workspace Preview</span>
                   </div>
                 </div>
               </div>
@@ -255,14 +255,14 @@ export function ProductSurface() {
 
                 <div className="space-y-3 text-xs">
                   <div>
-                    <span className="text-[#77756E] font-mono block text-[11px]">Primary Source Citation</span>
+                    <span className="text-[#77756E] block text-[11px]">Primary source citation</span>
                     <span className="text-[#20201E] font-medium leading-tight block mt-0.5">
                       {dataset.citation}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#77756E] font-mono block text-[11px]">Regulatory Identifier</span>
+                    <span className="text-[#77756E] block text-[11px]">Regulatory identifier</span>
                     <span className="text-[#B9684E] font-mono font-semibold block mt-0.5">
                       {dataset.cik}
                     </span>
@@ -270,13 +270,13 @@ export function ProductSurface() {
 
                   <div>
                     <span className="text-[#77756E] block text-[11px]">Data note</span>
-                    <span className="text-[#20201E] font-mono font-bold block mt-0.5">
+                    <span className="text-[#20201E] text-xs font-normal block mt-0.5">
                       Illustrative values; verify against the source before use.
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#77756E] font-mono block text-[11px]">Available Formats</span>
+                    <span className="text-[#77756E] block text-[11px]">Available formats</span>
                     <div className="flex flex-wrap gap-1.5 mt-1.5">
                       {['Excel (.xlsx)', 'CSV', 'JSON', 'Parquet', 'REST API v4'].map((fmt) => (
                         <span
@@ -294,10 +294,10 @@ export function ProductSurface() {
                   <Button
                     variant="primary"
                     size="md"
-                    className="w-full justify-center font-bold text-xs"
-                    onClick={() => window.location.href = '/dataset'}
+                    className="w-full justify-center font-semibold text-xs"
+                    onClick={() => navigate('/dataset')}
                   >
-                    Open Full Dataset Workspace
+                    Open full dataset workspace
                     <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
                   </Button>
                 </div>
