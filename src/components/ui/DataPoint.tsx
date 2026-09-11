@@ -46,7 +46,7 @@ export const DataPoint = React.forwardRef<HTMLDivElement, DataPointProps>(
           </div>
         )}
         <div className="flex items-baseline gap-1.5 my-1">
-          <span className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink font-heading">
+          <span className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink font-heading tabular-nums">
             {value}
           </span>
           {unit && (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Sparkles, Command, ArrowRight, CornerDownLeft, X, Database, Building2, Globe, FileText, TrendingUp } from 'lucide-react';
+import { Search, Sparkles, ArrowRight, CornerDownLeft, X, Database, Building2, Globe, FileText, TrendingUp } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 
-interface SpotlightSearchModalProps {
+interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -16,7 +16,7 @@ const QUICK_SUGGESTIONS = [
   { label: 'India GDP Growth vs Emerging Market Peers', category: 'Country', type: 'Macro', path: '/country' }
 ];
 
-export function SpotlightSearchModal({ isOpen, onClose }: SpotlightSearchModalProps) {
+export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ export function SpotlightSearchModal({ isOpen, onClose }: SpotlightSearchModalPr
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type a query or search statistics, tickers, macro data (e.g. 'US Inflation 2026')..."
+            placeholder="Search companies, filings, and datasets..."
             className="w-full bg-transparent text-text-main text-base outline-none placeholder:text-text-muted font-medium"
           />
           {query && (
@@ -80,31 +80,28 @@ export function SpotlightSearchModal({ isOpen, onClose }: SpotlightSearchModalPr
               <X className="h-4 w-4" />
             </button>
           )}
-          <Badge variant="outline" className="hidden md:flex items-center gap-1 font-mono text-[10px] text-text-muted border-border">
-            <Command className="h-3 w-3" /> K
-          </Badge>
         </form>
 
-        {/* AI Synthesis Assistant Teaser if query typed */}
+        {/* Search Assistant Teaser if query typed */}
         {query && (
           <div className="px-4 py-3 bg-primary/5 border-b border-border flex items-center justify-between">
             <div className="flex items-center gap-2 text-xs text-primary font-medium">
-              <Sparkles className="h-4 w-4 animate-pulse shrink-0" />
-              <span>AI Search: Analyzing 3.5M+ financial series for "{query}"</span>
+              <Sparkles className="h-4 w-4 shrink-0" />
+              <span>Analyzing financial series for "{query}"</span>
             </div>
             <button 
               onClick={handleFormSubmit}
               className="text-xs font-semibold text-primary hover:underline flex items-center gap-1"
             >
-              Run AI Analysis <ArrowRight className="h-3 w-3" />
+              Search results <ArrowRight className="h-3 w-3" />
             </button>
           </div>
         )}
 
         {/* Results List */}
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
-          <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-text-muted">
-            {query ? 'Search Suggestions' : 'Trending Institutional Queries'}
+          <div className="px-3 py-1.5 text-xs text-text-muted">
+            {query ? 'Search suggestions' : 'Suggested searches'}
           </div>
 
           {QUICK_SUGGESTIONS.filter(item => !query || item.label.toLowerCase().includes(query.toLowerCase())).map((item, idx) => (

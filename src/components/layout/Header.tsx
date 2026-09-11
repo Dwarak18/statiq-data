@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, BarChart2, Menu, X, Command } from 'lucide-react';
+import { Search, BarChart2, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { SpotlightSearchModal } from '@/components/ui/SpotlightSearchModal';
+import { SearchModal } from '@/components/ui/SearchModal';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { MobileNav, NavItem } from './MobileNav';
 
@@ -20,7 +20,7 @@ const NAV_ITEMS: NavItem[] = [
 
 export function Header({ currentSection, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSpotlightOpen, setIsSpotlightOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,7 +79,7 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
 
             {/* Desktop Navigation */}
             <nav
-              className="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider uppercase text-[#77756E]"
+              className="hidden lg:flex items-center gap-6 text-sm font-medium text-[#77756E]"
               aria-label="Main Section Navigation"
             >
               {NAV_ITEMS.map((item) => {
@@ -110,20 +110,17 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
 
           {/* Right Controls */}
           <div className="flex items-center gap-3">
-            {/* Spotlight Search Trigger */}
+            {/* Search Trigger */}
             <button
               type="button"
-              onClick={() => setIsSpotlightOpen(true)}
-              aria-label="Open Spotlight Search"
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Open search"
               className="hidden sm:flex items-center gap-3 h-9 px-3.5 rounded-[6px] border border-[#DEDDD7] bg-white text-[#77756E] text-xs hover:border-[#B9684E]/40 transition-all w-56 lg:w-64 justify-between cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B9684E]"
             >
               <div className="flex items-center gap-2">
                 <Search className="h-3.5 w-3.5 text-[#77756E] group-hover:text-[#B9684E] transition-colors" />
-                <span className="truncate">Spotlight search...</span>
+                <span className="truncate">Search companies, filings, and datasets</span>
               </div>
-              <span className="hidden md:inline-flex items-center gap-1 font-mono text-[10px] bg-[#F7F6F2] px-1.5 py-0.5 rounded border border-[#DEDDD7]">
-                <Command className="h-3 w-3" /> K
-              </span>
             </button>
 
             {/* Desktop Action Controls */}
@@ -143,9 +140,9 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
                 variant="primary"
                 size="sm"
                 onClick={() => navigate('/signup')}
-                className="text-xs font-bold"
+                className="text-xs font-semibold"
               >
-                Request Access
+                Talk to our team
               </Button>
             </div>
 
@@ -169,15 +166,15 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
           navItems={NAV_ITEMS}
-          onOpenSpotlight={() => setIsSpotlightOpen(true)}
+          onOpenSearch={() => setIsSearchOpen(true)}
           onNavClick={handleNavClick}
         />
       </header>
 
-      {/* Spotlight Search Overlay Modal */}
-      <SpotlightSearchModal
-        isOpen={isSpotlightOpen}
-        onClose={() => setIsSpotlightOpen(false)}
+      {/* Search Overlay Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
       />
     </>
   );

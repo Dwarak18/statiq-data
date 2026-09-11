@@ -106,12 +106,12 @@ export function IndiaInsuranceDashboard() {
         type: 'value',
         name: 'Premium (₹ Cr)',
         axisLabel: { color: '#A3A3A3', formatter: '₹{value}' },
-        splitLine: { lineStyle: { color: '#2A2A2A' } }
+        splitLine: { lineStyle: { color: '#DEDDD7' } }
       },
       {
         type: 'value',
         name: 'YoY Growth (%)',
-        axisLabel: { color: '#C8A45D', formatter: '{value}%' },
+        axisLabel: { color: '#B9684E', formatter: '{value}%' },
         splitLine: { show: false }
       }
     ],
@@ -124,7 +124,7 @@ export function IndiaInsuranceDashboard() {
         itemStyle: {
           color: {
             type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-            colorStops: [{ offset: 0, color: '#C8A45D' }, { offset: 1, color: '#8A6D30' }]
+            colorStops: [{ offset: 0, color: '#B9684E' }, { offset: 1, color: '#8F4832' }]
           },
           borderRadius: [4, 4, 0, 0]
         }
@@ -145,7 +145,7 @@ export function IndiaInsuranceDashboard() {
   const topInsurersBarOption = {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { left: '3%', right: '5%', bottom: '3%', top: '5%', containLabel: true },
-    xAxis: { type: 'value', axisLabel: { color: '#A3A3A3', formatter: '₹{value}Cr' }, splitLine: { lineStyle: { color: '#2A2A2A' } } },
+    xAxis: { type: 'value', axisLabel: { color: '#A3A3A3', formatter: '₹{value}Cr' }, splitLine: { lineStyle: { color: '#DEDDD7' } } },
     yAxis: {
       type: 'category',
       inverse: true,

@@ -130,7 +130,7 @@ export function Country() {
     xAxis: { type: 'category', data: currentCountry.years },
     yAxis: { type: 'value', axisLabel: { formatter: '${value}T' } },
     series: [
-      { name: 'GDP (Trillions USD)', type: 'bar', data: gdpValues, itemStyle: { color: '#C8A45D' } }
+      { name: 'GDP (Trillions USD)', type: 'bar', data: gdpValues, itemStyle: { color: '#B9684E' } }
     ]
   };
 
@@ -248,8 +248,8 @@ export function Country() {
                   ...gdpChart,
                   xAxis: { type: 'category', data: ['2000', '2005', '2010', '2015', '2020', '2025'] },
                   series: [
-                    { name: currentCountry.name, type: 'line', smooth: true, data: [1.1, 1.8, 2.6, 3.4, 4.1, 4.8], itemStyle: { color: '#C8A45D' } },
-                    { name: 'Peer median', type: 'line', smooth: true, data: [0.9, 1.4, 2.0, 2.9, 3.6, 4.2], itemStyle: { color: '#E3C47A' } }
+                    { name: currentCountry.name, type: 'line', smooth: true, data: [1.1, 1.8, 2.6, 3.4, 4.1, 4.8], itemStyle: { color: '#B9684E' } },
+                    { name: 'Peer median', type: 'line', smooth: true, data: [0.9, 1.4, 2.0, 2.9, 3.6, 4.2], itemStyle: { color: '#657B6C' } }
                   ]
                 }}
                 style={{ height: '220px' }}

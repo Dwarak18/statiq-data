@@ -24,10 +24,10 @@ export function Footer() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-[#77756E]">
-              <span className="flex items-center gap-1 font-mono text-[11px]">
-                <ShieldCheck className="h-3.5 w-3.5 text-[#B9684E]" /> SEC EDGAR Audited
+              <span className="flex items-center gap-1.5 text-xs">
+                <ShieldCheck className="h-3.5 w-3.5 text-[#B9684E]" /> SEC EDGAR Lineage
               </span>
-              <span className="flex items-center gap-1 font-mono text-[11px]">
+              <span className="flex items-center gap-1.5 text-xs">
                 <Terminal className="h-3.5 w-3.5 text-[#B9684E]" /> API v4 Sync
               </span>
             </div>
@@ -35,7 +35,7 @@ export function Footer() {
 
           {/* Institutional Navigation (1 col) */}
           <div>
-            <h4 className="font-bold uppercase font-mono tracking-wider mb-4 text-[#20201E] text-[11px]">
+            <h4 className="font-semibold text-xs text-[#20201E] mb-4">
               Institutional
             </h4>
             <ul className="space-y-2.5 text-xs text-[#77756E]">
@@ -69,7 +69,7 @@ export function Footer() {
 
           {/* Platform Links (1 col) */}
           <div>
-            <h4 className="font-bold uppercase font-mono tracking-wider mb-4 text-[#20201E] text-[11px]">
+            <h4 className="font-semibold text-xs text-[#20201E] mb-4">
               Platform
             </h4>
             <ul className="space-y-2.5 text-xs text-[#77756E]">
@@ -85,7 +85,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/dashboard" className="hover:text-[#B9684E] transition-colors">
-                  Methodology &amp; Audit
+                  Methodology &amp; Verification
                 </Link>
               </li>
               <li>
@@ -98,7 +98,7 @@ export function Footer() {
 
           {/* Governance & Legal (1 col) */}
           <div>
-            <h4 className="font-bold uppercase font-mono tracking-wider mb-4 text-[#20201E] text-[11px]">
+            <h4 className="font-semibold text-xs text-[#20201E] mb-4">
               Governance
             </h4>
             <ul className="space-y-2.5 text-xs text-[#77756E]">
@@ -114,7 +114,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/dataset" className="hover:text-[#B9684E] transition-colors">
-                  Audit Disclosures
+                  Source Disclosures
                 </Link>
               </li>
               <li>
@@ -126,14 +126,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Live Status & Copyright Bar */}
-        <div className="mt-12 pt-6 border-t border-[#DEDDD7] flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#9A9890]">
-          <p>© 2027 STATIQDATA Intelligence Inc. All rights reserved. SEC EDGAR Audited Lineage.</p>
+        {/* Status & Copyright Bar */}
+        <div className="mt-12 pt-6 border-t border-[#DEDDD7] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#77756E]">
+          <p>© 2026 STATIQONE Intelligence Inc. All rights reserved. Regulatory primary source lineage.</p>
 
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#657B6C] animate-pulse" />
-            <span className="text-[#4F4E49]">3,542,109 Series Syncing</span>
-            <span className="text-[#9A9890]">// API v4 Operational</span>
+          <div className="flex items-center gap-3 text-xs">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#657B6C]" />
+            <span className="text-[#4F4E49] font-mono tabular-nums">3,542,109 Series</span>
+            <span>·</span>
+            <span>REST &amp; WebSocket API v4</span>
           </div>
         </div>
       </Container>

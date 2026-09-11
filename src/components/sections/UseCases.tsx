@@ -31,7 +31,7 @@ const PATHWAYS: Record<string, PathwayContent> = {
     role: 'Researchers & Academic Economists',
     headline: '35+ Years of Sovereign Macro & Econometric Data',
     description:
-      'Access 3.5 million+ audited time-series datasets spanning sovereign GDP trajectories, central bank policy rates, and global trade flows from IMF, World Bank, and OECD.',
+      'Access 3.5 million+ time-series datasets spanning sovereign GDP trajectories, central bank policy rates, and global trade flows from IMF, World Bank, and OECD.',
     benefits: [
       '35-year point-in-time historical econometric baselines',
       'Direct Python & R Parquet pipeline integration via API v4',
@@ -48,9 +48,9 @@ const PATHWAYS: Record<string, PathwayContent> = {
     role: 'Corporate Strategy & Business Leaders',
     headline: 'Sector Revenue Benchmarks & Supply Chain Pricing',
     description:
-      'Monitor enterprise competitor revenues, sector market share distributions, and capital expenditure allocations in real time across 250+ covered industries.',
+      'Monitor enterprise competitor revenues, sector market share distributions, and capital expenditure allocations across 250+ covered industries.',
     benefits: [
-      'Real-time segment revenue share tracking across top equities',
+      'Segment revenue share tracking across top equities',
       'Semiconductor & EV supply chain capex allocation benchmarks',
       'Custom sector dashboard exports for strategic planning',
     ],
@@ -58,14 +58,14 @@ const PATHWAYS: Record<string, PathwayContent> = {
     metricPreview: {
       label: 'Covered Sectors',
       value: '250+ Industries',
-      sub: 'Audited Enterprise Financial Metrics',
+      sub: 'Enterprise financial metrics',
     },
   },
   analysts: {
     role: 'Buy-Side & Sell-Side Equity Analysts',
     headline: 'Automated SEC 10-K Line Item Extraction',
     description:
-      'Skip manual filing lookups. Instantly pull audited balance sheet items, income statements, operating margins, and earnings surprises with primary SEC CIK citations.',
+      'Skip manual filing lookups. Instantly pull balance sheet items, income statements, operating margins, and earnings surprises with primary SEC CIK citations.',
     benefits: [
       'Direct SEC EDGAR 10-K & 10-Q line-item table extraction',
       'Earnings surprise metrics & valuation multiple trackers',
@@ -85,14 +85,14 @@ const PATHWAYS: Record<string, PathwayContent> = {
       'Consume concise quantitative executive summaries, country geopolitical risk ratings, and weekly macro intelligence digests designed for board-level evaluation.',
     benefits: [
       'Natural language executive summaries powered by domain AI',
-      'Sovereign credit & country risk ratings updated continuously',
+      'Sovereign credit and country risk ratings',
       'Weekly institutional digest in-box briefings',
     ],
     outputTypes: ['Executive Briefing PDFs', 'Country Risk Ratings', 'Board Intelligence Summaries'],
     metricPreview: {
       label: 'Executive Reports',
       value: '45K+ Pages',
-      sub: 'Audited Research Briefings',
+      sub: 'Structured research briefings',
     },
   },
 };
@@ -108,12 +108,15 @@ export function UseCases() {
         {/* Header */}
         <Reveal yOffset={12}>
           <div className="mb-10 max-w-3xl">
-            <SectionLabel number="06" text="SECTOR PATHWAYS" />
+            <SectionLabel text="Built for different research teams" />
             <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#20201E] mt-3">
-              Tailored Solutions Across the Investment Ecosystem
+              Financial data for every{' '}
+              <span className="font-serif italic font-normal text-[#B9684E]">
+                research specialty
+              </span>
             </h2>
             <p className="text-sm sm:text-base text-[#4F4E49] mt-3 leading-relaxed">
-              Select your role to view specialized workflows, data outputs, and institutional benefits.
+              Select a specialty to view specialized workflows, primary source feeds, and institutional data outputs.
             </p>
           </div>
         </Reveal>
@@ -137,7 +140,7 @@ export function UseCases() {
             {/* Left Column (7 cols): Role Details & Benefits */}
             <div className="lg:col-span-7 space-y-6">
               <div>
-                <span className="font-mono text-xs text-[#B9684E] font-bold uppercase tracking-wider block mb-1">
+                <span className="text-xs font-semibold text-[#B9684E] block mb-1">
                   {currentPathway.role}
                 </span>
                 <h3 className="font-heading text-2xl sm:text-3xl font-bold text-[#20201E]">
@@ -175,13 +178,13 @@ export function UseCases() {
             <div className="lg:col-span-5">
               <div className="p-6 rounded-[6px] bg-[#FBFAF7] border border-[#DEDDD7] space-y-5">
                 <div className="border-b border-[#E9E7E1] pb-4">
-                  <span className="text-[11px] font-mono text-[#77756E] uppercase tracking-wider block">
+                  <span className="text-xs text-[#77756E] font-medium block">
                     {currentPathway.metricPreview.label}
                   </span>
-                  <div className="font-mono text-3xl font-bold text-[#B9684E] mt-1">
+                  <div className="font-mono text-3xl font-bold text-[#B9684E] mt-1 tabular-nums">
                     {currentPathway.metricPreview.value}
                   </div>
-                  <span className="text-xs font-mono text-[#4F4E49] block mt-0.5">
+                  <span className="text-xs text-[#4F4E49] block mt-0.5">
                     {currentPathway.metricPreview.sub}
                   </span>
                 </div>

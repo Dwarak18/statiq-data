@@ -14,22 +14,19 @@ const VERIFIED_SOURCES = [
 
 export function ProofStrip() {
   return (
-    <section className="border-b border-[#DEDDD7] bg-white py-12 sm:py-16">
+    <section className="border-b border-[#DEDDD7] bg-white py-12 sm:py-16" data-editorial-row="proof-strip">
       <Container>
-        {/* Section Header */}
+        {/* Editorial Section Header */}
         <Reveal yOffset={12}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-[#E9E7E1] pb-4">
             <div>
               <div className="text-sm font-medium text-[#20201E] mb-1">
-                01 — Sources used in the platform
+                Trusted data sources
               </div>
               <p className="text-xs sm:text-sm text-[#77756E]">
                 Examples of public sources represented in the research workflows
               </p>
             </div>
-            <span className="font-mono text-[11px] text-[#77756E] bg-[#F7F6F2] px-3 py-1 rounded-[4px] border border-[#DEDDD7] self-start sm:self-auto">
-              Source directory
-            </span>
           </div>
         </Reveal>
 
@@ -41,7 +38,7 @@ export function ProofStrip() {
                 key={source.name}
                 className="shrink-0 flex flex-col p-3 rounded-[6px] bg-[#FBFAF7] border border-[#E9E7E1] min-w-[200px]"
               >
-                <span className="font-mono text-xs font-semibold text-[#20201E]">
+                <span className="text-xs font-semibold text-[#20201E]">
                   {source.name}
                 </span>
                 <span className="text-[11px] text-[#77756E] mt-0.5">
@@ -57,25 +54,25 @@ export function ProofStrip() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <DataPoint
               value="3.5M+"
-              label="Audited Statistics (3,542,109 active series)"
+              label="Financial and economic series"
               source="FRED / SEC"
-              trend="Updated Live"
+              trend="Macro & equities"
             />
             <DataPoint
               value="250+"
-              label="Covered Industry & Macro Sectors"
+              label="Industry and macro sectors"
               source="Taxonomy v4"
-              trend="Global Scope"
+              trend="Global scope"
             />
             <DataPoint
               value="150+"
-              label="Global Sovereign Economies"
+              label="Sovereign economies covered"
               source="IMF / World Bank"
               trend="1990–2026"
             />
             <DataPoint
               value="45K+"
-              label="Institutional Report Pages Ingested"
+              label="Filing pages indexed"
               source="SEC EDGAR"
               trend="10-K & 10-Q"
             />

@@ -68,7 +68,7 @@ export function Dashboard() {
       name: 'Tracked symbols',
       type: 'bar',
       data: analytics?.sectors.map((sector) => sector.count) || [],
-      itemStyle: { color: '#C8A45D' },
+      itemStyle: { color: '#B9684E' },
     }],
   };
 

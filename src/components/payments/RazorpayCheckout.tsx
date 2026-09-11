@@ -91,7 +91,7 @@ export function RazorpayCheckout({
           email: user?.email || '',
         },
         theme: {
-          color: '#C8A45D', // STATIQONE Primary Gold
+          color: '#B9684E', // STATIQONE Primary Terracotta
           backdrop_color: 'rgba(10, 10, 10, 0.85)',
         },
         handler: async (response: {

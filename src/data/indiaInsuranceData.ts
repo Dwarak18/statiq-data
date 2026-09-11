@@ -69,7 +69,7 @@ export const OVERALL_MARKET_SUMMARY: MarketSummary = {
 export const SECTOR_TYPES_JUNE_2026: SectorShare[] = [
   { sector: 'Private General Insurers', premiumJune2026: 49454.96, marketShare: 56.25, growthRate: 11.45, color: '#3B82F6' },
   { sector: 'Public Sector Insurers (PSUs)', premiumJune2026: 26031.08, marketShare: 29.61, growthRate: 2.65, color: '#10B981' },
-  { sector: 'Standalone Health Insurers (SAHI)', premiumJune2026: 12161.27, marketShare: 13.83, growthRate: 32.89, color: '#C8A45D' },
+  { sector: 'Standalone Health Insurers (SAHI)', premiumJune2026: 12161.27, marketShare: 13.83, growthRate: 32.89, color: '#B9684E' },
   { sector: 'Specialized Insurers (AIC/ECGC)', premiumJune2026: 270.32, marketShare: 0.31, growthRate: 7.09, color: '#8B5CF6' },
 ];
 

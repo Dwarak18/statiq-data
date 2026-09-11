@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, Command } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
@@ -14,7 +14,7 @@ interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
   navItems: NavItem[];
-  onOpenSpotlight: () => void;
+  onOpenSearch: () => void;
   onNavClick: (item: NavItem) => void;
 }
 
@@ -22,7 +22,7 @@ export function MobileNav({
   isOpen,
   onClose,
   navItems,
-  onOpenSpotlight,
+  onOpenSearch,
   onNavClick,
 }: MobileNavProps) {
   const navigate = useNavigate();
@@ -41,16 +41,13 @@ export function MobileNav({
         type="button"
         onClick={() => {
           onClose();
-          onOpenSpotlight();
+          onOpenSearch();
         }}
-        aria-label="Open Spotlight Search Modal"
+        aria-label="Open search"
         className="w-full h-10 rounded-[8px] border border-[#DEDDD7] bg-white px-3.5 flex items-center justify-between text-xs text-[#77756E] hover:border-[#B9684E]/40 transition-colors cursor-pointer"
       >
         <span className="flex items-center gap-2">
-          <Search className="h-4 w-4 text-[#B9684E]" /> Spotlight Search...
-        </span>
-        <span className="hidden md:inline-flex items-center font-mono text-[10px] bg-[#F7F6F2] px-1.5 py-0.5 rounded border border-[#DEDDD7]">
-          <Command className="inline h-2.5 w-2.5 mr-0.5" /> K
+          <Search className="h-4 w-4 text-[#B9684E]" /> Search
         </span>
       </button>
 
@@ -61,7 +58,7 @@ export function MobileNav({
             key={item.label}
             type="button"
             onClick={() => onNavClick(item)}
-            className="flex items-center justify-between px-3 py-2.5 rounded-[6px] text-xs font-mono tracking-wider uppercase text-[#4F4E49] hover:bg-white hover:text-[#20201E] transition-all text-left cursor-pointer"
+            className="flex items-center justify-between px-3 py-2.5 rounded-[6px] text-sm font-medium text-[#4F4E49] hover:bg-white hover:text-[#20201E] transition-all text-left cursor-pointer"
           >
             <span>{item.label}</span>
             <span className="text-xs text-[#B9684E] font-mono opacity-80">&rarr;</span>
@@ -85,19 +82,19 @@ export function MobileNav({
         <Button
           variant="primary"
           size="sm"
-          className="w-full justify-center h-10 text-xs font-bold"
+          className="w-full justify-center h-10 text-xs font-semibold"
           onClick={() => {
             onClose();
             navigate('/signup');
           }}
         >
-          Request Access
+          Talk to our team
         </Button>
       </div>
 
       {/* Theme toggle */}
       <div className="flex items-center justify-between pt-3 border-t border-[#DEDDD7]">
-        <span className="text-xs font-mono uppercase tracking-wider text-[#77756E]">
+        <span className="text-xs font-medium text-[#77756E]">
           Appearance
         </span>
         <ThemeToggle />

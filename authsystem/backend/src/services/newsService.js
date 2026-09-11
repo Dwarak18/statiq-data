@@ -105,28 +105,50 @@ FEED_CONFIGS.forEach((feed) => {
 });
 
 /**
+ * XML and HTML entity map for safe single-pass unescaping
+ */
+const XML_ENTITIES = {
+  '&quot;': '"',
+  '&apos;': "'",
+  '&#39;': "'",
+  '&lt;': '<',
+  '&gt;': '>',
+  '&nbsp;': ' ',
+  '&amp;': '&',
+};
+
+/**
+ * Single-pass entity decoder to eliminate double unescaping vulnerabilities (CodeQL Alert #7)
+ */
+function unescapeXmlEntities(text) {
+  return text.replace(/&(?:[a-zA-Z]+|#\d+|#[xX][0-9a-fA-F]+);/g, (match) => {
+    const lower = match.toLowerCase();
+    if (XML_ENTITIES[lower]) return XML_ENTITIES[lower];
+    if (lower.startsWith('&#x')) {
+      const code = parseInt(lower.slice(3, -1), 16);
+      return !isNaN(code) && code >= 32 && code < 65536 ? String.fromCharCode(code) : match;
+    }
+    if (lower.startsWith('&#')) {
+      const code = parseInt(lower.slice(2, -1), 10);
+      return !isNaN(code) && code >= 32 && code < 65536 ? String.fromCharCode(code) : match;
+    }
+    return match;
+  });
+}
+
+/**
  * Clean & Unescape HTML and XML strings.
  *
- * Order is deliberate:
- *   1. Extract CDATA content (strip wrapper only).
- *   2. Strip ALL HTML/XML tags — this must happen before entity unescaping
- *      so that encoded markup like &lt;script&gt; never becomes live tags.
- *   3. Unescape safe text entities (&amp; &quot; etc.) for display.
- *   4. Normalise whitespace.
+ * Single-pass unescaping prevents double unescaping vulnerabilities where
+ * encoded sequences (like &amp;lt;) cannot be decoded twice.
  */
 function cleanXmlText(str) {
   if (!str) return '';
-  return str
-    .replace(/<!\[CDATA\[(.*?)\]\]>/gs, '$1') // unwrap CDATA
-    .replace(/<[^>]+>/g, ' ')                      // strip tags FIRST
-    .replace(/&amp;/g, '&')                        // then unescape entities
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'")
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+  return unescapeXmlEntities(
+    str
+      .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1') // unwrap CDATA
+      .replace(/<[^>]+>/g, ' ')                     // strip tags FIRST
+  )
     .replace(/\s+/g, ' ')
     .trim();
 }
